@@ -441,3 +441,11 @@ real_data/*
 real_data
 
 archive/
+
+
+*.tsv
+*.dot 
+*.png
+
+data/clone_trees/
+examples/cancer_evolution

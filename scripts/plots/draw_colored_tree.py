@@ -4,6 +4,7 @@ import argparse
 import networkx as nx
 import pandas as pd
 import seaborn as sns
+import numpy as np
 
 from loguru import logger
 from Bio import Phylo
@@ -128,12 +129,13 @@ def main():
         convert_to_hex = False
     else:
         num_colors = len(labeling['label'].unique())
-        colors = sns.color_palette("deep", num_colors)
+        colors = [(r,g,b) for [r,g,b] in sns.color_palette("Spectral", num_colors)]
+        skip = int(np.floor(len(colors) / (num_colors + 1)) - 1)
         labels = sorted(labeling['label'].unique())
-        color_map = {label: colors[i] for i, label in enumerate(labels)}
+        color_map = {label: colors[i * skip] for i, label in enumerate(labels)}
         convert_to_hex = True
+        
 
-    print(color_map)
     with open(f"{args.output}_colored_tree.dot", "w") as f:
         draw_colored_tree(T, labeling, color_map, f, convert_to_hex, args.branch_lengths)
 

@@ -59,15 +59,25 @@ def main():
 
     tree = nx.read_edgelist(args.tree, nodetype=str, create_using=nx.DiGraph(), data=(('weight', float),))
     perturbed_tree = nx.read_edgelist(args.perturbed_tree, nodetype=str, create_using=nx.DiGraph(), data=(('weight', float),))
-    true_labeling = pd.read_csv(args.vertex_labeling).set_index("vertex")
-    inferred_labeling = pd.read_csv(args.inferred_vertex_labeling).set_index("vertex")
+    
+    try:
+        true_labeling = pd.read_csv(args.vertex_labeling, sep=",").set_index("vertex")
+    except Exception as _:
+        column_names = ["vertex", "label"] 
+        true_labeling = pd.read_csv(args.vertex_labeling, sep="\t", header=None, names=column_names).set_index("vertex")
 
+    try:
+        inferred_labeling = pd.read_csv(args.inferred_vertex_labeling, sep=",").set_index("vertex")
+    except Exception as _:
+        column_names = ["vertex", "label"] 
+        inferred_labeling = pd.read_csv(args.inferred_vertex_labeling, sep="\t", header=None, names=column_names).set_index("vertex")
+    
     # parse timing results
-    with open(args.timing_results, 'r') as f:
-        timing = f.read()
-        match = re.search(r'Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): (.*)', timing) 
-        elapsed_time = match.groups()[0]
-        elapsed_time = sum(x * float(t) for x, t in zip([1, 60, 3600], elapsed_time.split(":")[::-1]))
+    # with open(args.timing_results, 'r') as f:
+        # timing = f.read()
+        # match = re.search(r'Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): (.*)', timing) 
+        # elapsed_time = match.groups()[0]
+        # elapsed_time = sum(x * float(t) for x, t in zip([1, 60, 3600], elapsed_time.split(":")[::-1]))
 
     # construct true and inferred migration graphs
     true_migration_graph = construct_migration_graph(true_labeling, tree)
@@ -177,13 +187,15 @@ def main():
         }
     }
 
-    result['migration_graph_num_edges'] = true_migration_graph.number_of_edges()
-    result['migration_graph_num_vertices'] = true_migration_graph.number_of_nodes()
+    result['true_migration_graph_num_edges'] = true_migration_graph.number_of_edges()
+    result['true_migration_graph_num_vertices'] = true_migration_graph.number_of_nodes()
+    result['inferred_migration_graph_num_edges'] = inferred_migration_graph.number_of_edges()
+    result['inferred_migration_graph_num_vertices'] = inferred_migration_graph.number_of_nodes()
     result['num_correctly_labeled'] = num_correctly_labeled
     result['num_vertices'] = len(tree.nodes)
     result['true_parsimony_score'] = true_parsimony_score
     result['inferred_parsimony_score'] = inferred_parsimony_score
-    result['elapsed_time'] = elapsed_time
+    # result['elapsed_time'] = elapsed_time
 
     with open(args.output, "w") as f:
         json.dump(result, f, indent=4)

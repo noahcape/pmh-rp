@@ -506,24 +506,27 @@ if __name__ == "__main__":
 
         migration_graph.add_edge(u.anatomical_site, v.anatomical_site)
 
+    # TODO: fixed this to not write out with a prefixed s
+    identifier_map = {j: i for i, j in enumerate([i.identifier for i in T.nodes])}
+
     with open(f"{args.output}_tree_edgelist.tsv", "w") as f:
         for (i, j) in T.edges:
-            f.write(f"s{i.identifier}\ts{j.identifier}\t{T[i][j]['weight']}\n")
+            f.write(f"s{identifier_map[i.identifier]}\ts{identifier_map[j.identifier]}\t{T[i][j]['weight']}\n")
 
     with open(f"{args.output}_perturbed_tree_edgelist.tsv", "w") as f:
         for (i, j) in T_perturbed.edges:
-            f.write(f"s{i.identifier}\ts{j.identifier}\t{T_perturbed[i][j]['weight']}\n")
+            f.write(f"s{identifier_map[i.identifier]}\ts{identifier_map[j.identifier]}\t{T_perturbed[i][j]['weight']}\n")
 
     with open(f"{args.output}_labeling.csv", "w") as f:
         f.write("vertex,label\n")
         for cell in T.nodes:
-            f.write(f"s{cell.identifier},{cell.anatomical_site}\n")
+            f.write(f"s{identifier_map[cell.identifier]},{cell.anatomical_site}\n")
 
     with open(f"{args.output}_leaf_labeling.csv", "w") as f:
         f.write("leaf,label\n")
         for cell in T_perturbed.nodes:
             if len(list(T_perturbed.successors(cell))) == 0:
-                f.write(f"s{cell.identifier},{cell.anatomical_site}\n")
+                f.write(f"s{identifier_map[cell.identifier]},{cell.anatomical_site}\n")
 
     with open(f"{args.output}_migration_graph.csv", "w") as f:
         f.write("src,dst\n")
