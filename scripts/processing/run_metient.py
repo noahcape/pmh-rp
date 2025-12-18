@@ -28,47 +28,31 @@ import os
 from metient import metient
 
 
-def format_metient_data(tree, labeling, root_label, mutations):
-    locations = list(
-        set([labeling.loc[leaf, "label"] for leaf in labeling.index])
-    )
-    nodes = [v for v in tree.nodes]
-    leaves = [v for v in labeling.index]
+def format_metient_data(tree, labeling, root_label, mutations=1):
+    locations = sorted(labeling["label"].unique())
+    label_idx = {s: i for i, s in enumerate(locations)}
 
-    anatomical_site_idx = []
-    anatomical_site_label = []
-    cluster_idx = []
-    cluster_label = []
-    present = []
-    site_category = []
-    num_mutations = []
-    label_idx = {i: j for j, i in enumerate(locations)}
-    node_idx = {i: j for j, i in enumerate(nodes)}
+    rows = []
 
-    for s in label_idx:
-        for u in node_idx:
-            anatomical_site_idx.append(label_idx[s])
-            anatomical_site_label.append(s)
-            cluster_idx.append(node_idx[u])
-            cluster_label.append(u)
-            present.append(1 if int(u) in leaves and s == labeling.loc[int(u), "label"] else 0)
-            site_category.append("primary" if s == root_label else "metastasis")
-            num_mutations.append(5)
+    for s in locations:
+        for u in tree.nodes:
+            rows.append(
+                {
+                    "anatomical_site_index": label_idx[s],
+                    "anatomical_site_label": s,
+                    "cluster_index": u,
+                    "cluster_label": str(u).replace(":", "_"),
+                    "present": (
+                        1
+                        if (u in labeling.index and labeling.loc[u, "label"] == s)
+                        else 0
+                    ),
+                    "site_category": "primary" if s == root_label else "metastasis",
+                    "num_mutations": mutations,
+                }
+            )
 
-
-    metient_df = pd.DataFrame(
-        {
-            "anatomical_site_index": anatomical_site_idx,
-            "anatomical_site_label": anatomical_site_label,
-            "cluster_index": cluster_idx,
-            "cluster_label": cluster_label,
-            "present": present,
-            "site_category": site_category,
-            "num_mutations": num_mutations,
-        }
-    )
-
-    return metient_df
+    return pd.DataFrame(rows)
 
 
 def parse_args():
@@ -109,9 +93,6 @@ if __name__ == "__main__":
         args.tree, nodetype=str, create_using=nx.DiGraph(), data=(("weight", float),)
     )
 
-    # for now lets assume that the weight is the number of mutations in this tree
-    total_weight = sum(data["weight"] for _, _, data in tree.edges(data=True))
-
     try:
         full_labeling = pd.read_csv(args.vertex_labeling, sep=",").set_index("vertex")
     except Exception as _:
@@ -132,18 +113,21 @@ if __name__ == "__main__":
     root = [v for v in tree.nodes if tree.in_degree(v) == 0][0]
     root_label = full_labeling.loc[root, "label"]
 
-    node_map = { j: i for i,j in enumerate(tree.nodes) }
-    edges = [(node_map[u], node_map[v]) for (u,v) in tree.edges]
-    metient_tree= nx.from_edgelist(edges, create_using=nx.DiGraph())
+    node_map = {j: i for i, j in enumerate(tree.nodes)}
+    edges = [(node_map[u], node_map[v]) for (u, v) in tree.edges]
+    metient_tree = nx.from_edgelist(edges, create_using=nx.DiGraph())
 
     metient_labeling = pd.DataFrame(
         {
-            "leaf": [node_map[v] for v in leaf_labeling.index],
-            "label": leaf_labeling["label"]
-        }   
+            "leaf": [
+                node_map[v] for v in leaf_labeling.index
+            ],  # changed to full labeling
+            "label": leaf_labeling["label"],
+        }
     ).set_index("leaf")
 
-    metient_df = format_metient_data(metient_tree, metient_labeling, root_label, total_weight)
+    # Note that we pass metient tree which is the remapped nodes to 0-n indexing
+    metient_df = format_metient_data(metient_tree, metient_labeling, root_label)
 
     metient_data_path = f"{args.output}_metient.tsv"
     metient_tree_path = f"{args.output}_metient_tree.txt"
@@ -161,22 +145,20 @@ if __name__ == "__main__":
 
     # convert the tree tsv file into a txt file - directly print the tree data to the file
     try:
-        # tree_df = pd.read_csv(args.tree, sep="\t")
-        # tree_df = tree_df.drop(tree_df.columns[2], axis=1)
-        # tree_df.to_csv(metient_tree_path, sep=" ", index=False)
         with open(metient_tree_path, "w") as file:
-            for (u,v) in metient_tree.edges:
-                print(u,v)
+            for u, v in metient_tree.edges:
                 file.write(f"{u} {v}\n")
     except Exception as e:
-        print(f"Failed to write tree edgelist as {args.tree} to {metient_tree_path} -- {e}.")
+        print(
+            f"Failed to write tree edgelist as {args.tree} to {metient_tree_path} -- {e}."
+        )
         exit
 
     print(f"Successfully wrote out metient tree format to {metient_tree_path}")
 
     print_config = metient.PrintConfig(visualize=True, verbose=False, k_best_trees=5)
     # set weight in decreasing order
-    weights = metient.Weights(.5, .4, .3)
+    weights = metient.Weights(0.5, 0.4, 0.3)
 
     metient.evaluate_label_clone_tree(
         metient_tree_path,
@@ -186,5 +168,5 @@ if __name__ == "__main__":
         metient_dir,
         args.index,
         solve_polytomies=False,
-        sample_size=10000
+        sample_size=10000,
     )
