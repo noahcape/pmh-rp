@@ -160,16 +160,15 @@ for data in "${data_dir}"/*; do
     # #     "empty"
 
     # solve tlp - normal
-    # mamba activate tlp
-    # /usr/bin/time -v \
-    #     python \
-    #     $tlp \
-    #     fast_machina \
-    #     $edgelist \
-    #     $leaf_labeling \
-    #     -o $tlp_normal_out \
-    #     -l "LL" \
-    #     > $tlp_normal_timing 2>&1 
+    mamba activate tlp
+    /usr/bin/time -v \
+        python \
+        $tlp \
+        $edgelist \
+        $leaf_labeling \
+        -o "${data}\maxl" \
+        -l "LL" \
+        > ${data}/tlp_max_likelihood.txt 2>&1 
 
     # solve tlp - edge regularized normal
     # mamba activate tlp
