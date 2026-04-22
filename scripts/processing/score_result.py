@@ -21,14 +21,20 @@ def parse_args():
     parser.add_argument("-o", "--output", help="Output file", default="result.json")
     return parser.parse_args()
 
+def to_vertex(x):
+    try:
+        return int(x)
+    except ValueError:
+        return x  
+
 def construct_migration_graph(labeling, tree):
     migration_graph = nx.DiGraph()
     for label in labeling["label"].unique():
         migration_graph.add_node(label)
 
     for u, v in tree.edges:
-        label_u = labeling.loc[u, "label"]
-        label_v = labeling.loc[v, "label"]
+        label_u = labeling.loc[labeling["vertex"] == to_vertex(u), "label"].iloc[0]
+        label_v = labeling.loc[labeling["vertex"] == to_vertex(v), "label"].iloc[0]
         if label_u != label_v:
             if migration_graph.has_edge(label_u, label_v):
                 migration_graph[label_u][label_v]["count"] += 1
@@ -58,26 +64,30 @@ def main():
     args = parse_args()
 
     tree = nx.read_edgelist(args.tree, nodetype=str, create_using=nx.DiGraph(), data=(('weight', float),))
-    perturbed_tree = nx.read_edgelist(args.perturbed_tree, nodetype=str, create_using=nx.DiGraph(), data=(('weight', float),))
-    
-    try:
-        true_labeling = pd.read_csv(args.vertex_labeling, sep=",").set_index("vertex")
-    except Exception as _:
-        column_names = ["vertex", "label"] 
-        true_labeling = pd.read_csv(args.vertex_labeling, sep="\t", header=None, names=column_names).set_index("vertex")
+    perturbed_tree = nx.read_edgelist(args.perturbed_tree, nodetype=str, create_using=nx.DiGraph(), data=(('weight', float),))  
 
     try:
-        inferred_labeling = pd.read_csv(args.inferred_vertex_labeling, sep=",").set_index("vertex")
+        true_labeling = pd.read_csv(args.vertex_labeling, sep=",")
+        true_labeling["vertex"] = true_labeling["vertex"].map(to_vertex)
     except Exception as _:
         column_names = ["vertex", "label"] 
-        inferred_labeling = pd.read_csv(args.inferred_vertex_labeling, sep="\t", header=None, names=column_names).set_index("vertex")
+        true_labeling = pd.read_csv(args.vertex_labeling, sep="\t", header=None, names=column_names)
+        true_labeling["vertex"] = true_labeling["vertex"].map(to_vertex)
+
+    try:
+        inferred_labeling = pd.read_csv(args.inferred_vertex_labeling, sep=",")
+        inferred_labeling["vertex"] = inferred_labeling["vertex"].map(to_vertex)
+    except Exception as _:
+        column_names = ["vertex", "label"] 
+        inferred_labeling = pd.read_csv(args.inferred_vertex_labeling, sep="\t", header=None, names=column_names)
+        inferred_labeling["vertex"] = inferred_labeling["vertex"].map(to_vertex)
     
     # parse timing results
-    # with open(args.timing_results, 'r') as f:
-        # timing = f.read()
-        # match = re.search(r'Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): (.*)', timing) 
-        # elapsed_time = match.groups()[0]
-        # elapsed_time = sum(x * float(t) for x, t in zip([1, 60, 3600], elapsed_time.split(":")[::-1]))
+    with open(args.timing_results, 'r') as f:
+        timing = f.read()
+        match = re.search(r'Elapsed \(wall clock\) time \(h:mm:ss or m:ss\): (.*)', timing) 
+        elapsed_time = match.groups()[0]
+        elapsed_time = sum(x * float(t) for x, t in zip([1, 60, 3600], elapsed_time.split(":")[::-1]))
 
     # construct true and inferred migration graphs
     true_migration_graph = construct_migration_graph(true_labeling, tree)
@@ -97,7 +107,7 @@ def main():
         return np.inf
 
     def leaf_f(node):
-        return true_labeling.loc[node, "label"]
+        return true_labeling.iloc[int(node)]["label"]
     
     scores = mp(tree, root, character_set, leaf_f, dist_f)
     labeling = {}
@@ -113,7 +123,7 @@ def main():
     # compute the number of correctly labeled vertices
     num_correctly_labeled = 0
     for vertex in tree.nodes:
-        true_label = true_labeling.loc[vertex, "label"]
+        true_label = true_labeling.iloc[int(vertex)]["label"]
         inferred_label = labeling[vertex]
         if true_label == inferred_label:
             num_correctly_labeled += 1
@@ -121,8 +131,8 @@ def main():
     # compute the true parsimony score and the inferred parsimony score
     true_parsimony_score = 0
     for u, v in tree.edges:
-        true_label_u = true_labeling.loc[u, "label"]
-        true_label_v = true_labeling.loc[v, "label"]
+        true_label_u = true_labeling.iloc[int(u)]["label"]
+        true_label_v = true_labeling.iloc[int(v)]["label"]
         if true_label_u != true_label_v:
             true_parsimony_score += 1
 
@@ -144,15 +154,19 @@ def main():
     false_negatives = true_relations - inferred_relations
     negatives = set([(u, v) for u in true_migration_graph.nodes() for v in true_migration_graph.nodes() if u != v]) - positives
 
-    fpr = len(false_positives) / len(negatives)
 
     if len(negatives) == 0:
         fnr = 0
+        fpr = 0
     else:
+        fpr = len(false_positives) / len(negatives)
         fnr = len(false_negatives) / len(positives)
 
     # compute Jaccard index
-    jaccard_index = len(inferred_relations.intersection(true_relations)) / len(inferred_relations.union(true_relations))
+    if len(inferred_relations.union(true_relations)) == 0:
+        jaccard_index = 0
+    else:
+        jaccard_index = len(inferred_relations.intersection(true_relations)) / len(inferred_relations.union(true_relations))
 
     # compute multiset symmetric difference between true and inferred migration graphs edge
     # sets
@@ -195,7 +209,7 @@ def main():
     result['num_vertices'] = len(tree.nodes)
     result['true_parsimony_score'] = true_parsimony_score
     result['inferred_parsimony_score'] = inferred_parsimony_score
-    # result['elapsed_time'] = elapsed_time
+    result['elapsed_time'] = elapsed_time
 
     with open(args.output, "w") as f:
         json.dump(result, f, indent=4)

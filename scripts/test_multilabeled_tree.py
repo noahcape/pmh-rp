@@ -1,56 +1,25 @@
-from tlp import MultiLabeledTree
+import argparse
+import itertools
+import json
+import sys
 
+import pandas as pd
+import numpy as np
+import networkx as nx
+ 
+from loguru import logger
+from tqdm import tqdm
+from enum import Enum
+from collections import defaultdict
 
-def test_small():
-    edgelist = [
-        (1, 3),
-        (1, 13),
-        (3, 11),
-        (3, 14),
-        (13, 12),
-        (13, 6),
-        (6, 4),
-        (12, 5),
-        (5, 10),
-        (5, 7),
-        (10, 2),
-    ]
+import pyomo.environ as pyo
+from gurobipy import GRB
+import gurobipy as gp
 
-    labeling = {
-        1: ["breast", "brain", "lung"],
-        3: ["brain", "lung"],
-        11: ["lung"],
-        14: ["brain"],
-        6: ["lung"],
-        4: ["ribs"],
-        5: ["liver"],
-        10: ["liver"],
-        7: ["kidney"],
-        2: ["liver"],
-    }
+from dag_resolution_labeling import MultiLabeledTree
+from dag_resolution_labeling import resolution_and_labeling_tlp
 
-    clone_tree = MultiLabeledTree.from_edgelist(
-        edgelist, labeling, ["breast", "brain", "lung", "liver", "ribs", "kidney"]
-    )
-    clone_tree.pull_down()
-    character_set = list(set([item for value in labeling.values() for item in value]))
-
-    for u,v in clone_tree.tree.edges:
-        for c in character_set:
-            for c2 in character_set:
-                print(f"Migration from ({u}, {c}) to ({v}, {c2}) -> costs: {clone_tree.dist_f((u,v), c, c2)}")
-
-    # print(clone_tree.dist_f((1, "1_breast"), "breast", "breast"))
-    # print(clone_tree.dist_f((1, "1_breast"), "lung", "breast"))
-    # print(clone_tree.dist_f((1, "1_breast"), "liver", "breast"))
-    # print(clone_tree.dist_f((12, 5), "liver", "liver"))
-    # print(clone_tree.dist_f((12, 5), "breast", "liver"))
-    # print(clone_tree.leaf_f(2))
-    # print(clone_tree.leaf_f(13))
-    # clone_tree.solve_tlp()
-
-
-def test_larger():
+def test_big():
     edgelist = [
         ("grey", "red"),
         ("grey", "dark_brownC"),
@@ -71,7 +40,7 @@ def test_larger():
 
     labeling = {
         "grey": ["seminal_vesicle", "prostate"],
-        "red": ["left_pelvic_lymph_node_5", "seminal_vesicle	prostate"],
+        "red": ["left_pelvic_lymph_node_5", "seminal_vesicle", "prostate"],
         "mid_blue": ["bladder", "right_pelvic_lymph_node_12", "seminal_vesicle"],
         "light_green": [
             "pelvic_lymph_node_7",
@@ -110,13 +79,127 @@ def test_larger():
 
     character_set = list(set([item for value in labeling.values() for item in value]))
 
-    clone_tree = MultiLabeledTree.from_edgelist(edgelist, labeling, character_set)
-    clone_tree.pull_down()
+    clone_tree = MultiLabeledTree.from_edgelist(
+        edgelist, labeling, character_set
+    )
 
-    print(clone_tree.dist_f(("grey", "1_prostate"), "seminal_vesicle", "prostate"))
-    for label in character_set:
-        print(f"{label} -> prostate\t", clone_tree.dist_f(("grey", "1_prostate"), f"{label}", "prostate"))
+    (N, augmented_labeling, restricted_edges, search_complexes) = clone_tree.augment_tree()
+    # for u,v in N.edges:
+    #     print(u,v)
+    # for u in N.nodes:
+    #     if u in augmented_labeling.keys():
+    #         print(u, augmented_labeling[u])
 
+    root = [n for n in N.nodes if N.in_degree(n) == 0]
+    if len(root) != 1:
+        print("Network must have a single root")
+        exit(1)
 
+    root = root[0]
+
+    if not nx.is_directed_acyclic_graph(N):
+        logger.error("Network must be a directed acyclic graph.")
+        sys.exit(1)
+
+    alphabet = clone_tree.character_set
+    model = resolution_and_labeling_tlp(N, root, alphabet, restricted_edges, search_complexes, clone_tree.label_f)
+
+    solver = pyo.SolverFactory('gurobi')
+    results = solver.solve(model, tee=True)
+
+    for u, v in N.edges:
+        for i in alphabet:
+            for j in alphabet:
+                if np.abs(model.decisions[u, v, i, j]()) > 1e-4:
+                    print(u, "labeled: ", i, v, "labeled: ", j)
+
+    results_dict = {}
+    results_dict['objective'] = model.objective()
+    results_dict['runtime'] = results.solver.wall_time
+    print(results_dict)
+
+    
 if __name__ == "__main__":
-    test_small()
+
+    edgelist = [
+        (1,2),
+        (2,5),
+        (5,3),
+        (5,4),
+        # (3,5),
+        # (5,6),
+        # (6,8)
+        # (4,7),
+    ]
+
+    labeling = {
+        # 7: ["A"],
+        1: ["A"],
+        2: ["B"],
+        5: ["B", "C"],
+        # 2: ["A", "B", "C", "D", "E"],
+        # 3: ["A", "B"],
+        3: ["A", "B"],
+        4: ["B", "C"],
+    }
+
+    character_set = ["A", "B", "C"]
+    clone_tree = MultiLabeledTree.from_edgelist(
+        edgelist, labeling, ["A", "B", "C"]
+    )
+
+    (N, augmented_labeling, restricted_edges, search_complexes) = clone_tree.augment_tree()
+
+    for u,v in N.edges:
+        print(u,v)
+    for u in N.nodes:
+        if u in augmented_labeling.keys():
+            print(u, augmented_labeling[u])
+
+    root = [n for n in N.nodes if N.in_degree(n) == 0]
+    if len(root) != 1:
+        print("Network must have a single root")
+        exit(1)
+
+    root = root[0]
+
+
+    if not nx.is_directed_acyclic_graph(N):
+        logger.error("Network must be a directed acyclic graph.")
+        sys.exit(1)
+
+    alphabet = clone_tree.character_set
+    model = resolution_and_labeling_tlp(N, root, alphabet, restricted_edges, search_complexes, clone_tree.label_f)
+
+    solver = pyo.SolverFactory('gurobi')
+    results = solver.solve(model, tee=True)
+
+# def process_model(model, tree, character_set, vertex_labeling={}):
+    vertex_labeling = {}
+    if len(vertex_labeling.keys()) == 0:
+        # compute (an) optimal vertex label
+        vertex_labeling = {}
+        for u,v in N.edges:
+            if model.reticulations[u,v]() == 1:
+                print(u, v)
+            for c1, c2 in itertools.product(character_set, character_set):
+                if np.abs(model.decisions[u, v, c1, c2]()) > 1e-4:
+                    vertex_labeling[u] = c1
+                    vertex_labeling[v] = c2
+
+    # compute the new migration multi-graph
+    migration_graph = defaultdict(int)
+    for u, v in N.edges:
+        if u not in vertex_labeling or v not in vertex_labeling:
+            continue
+
+        if vertex_labeling[u] != vertex_labeling[v]:
+            migration_graph[(vertex_labeling[u], vertex_labeling[v])] += 1
+
+    # print(migration_graph)
+    print(vertex_labeling)
+
+    results_dict = {}
+    results_dict['objective'] = model.objective()
+    results_dict['runtime'] = results.solver.wall_time
+    print(results_dict)

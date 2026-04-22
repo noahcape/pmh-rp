@@ -31,22 +31,35 @@ from metient import metient
 def format_metient_data(tree, labeling, root_label, mutations=1):
     locations = sorted(labeling["label"].unique())
     label_idx = {s: i for i, s in enumerate(locations)}
+    leaves = labeling.index
 
     rows = []
 
-    for s in locations:
-        for u in tree.nodes:
+    location_label = [(s, u) for s in locations for u in tree.nodes if (u in labeling.index and labeling.loc[u, "label"] == s)]
+
+    # do no loop over both
+    for (s,u) in location_label:
+        rows.append(
+            {
+                "anatomical_site_index": label_idx[s],
+                "anatomical_site_label": s,
+                "cluster_index": u,
+                "cluster_label": str(u).replace(":", "_"),
+                "present": 1,
+                "site_category": "primary" if s == root_label else "metastasis",
+                "num_mutations": mutations,
+            }
+        )
+
+    for u in [u for u in tree.nodes if u not in leaves]:
+        for s in locations:
             rows.append(
                 {
                     "anatomical_site_index": label_idx[s],
                     "anatomical_site_label": s,
                     "cluster_index": u,
                     "cluster_label": str(u).replace(":", "_"),
-                    "present": (
-                        1
-                        if (u in labeling.index and labeling.loc[u, "label"] == s)
-                        else 0
-                    ),
+                    "present":  0,
                     "site_category": "primary" if s == root_label else "metastasis",
                     "num_mutations": mutations,
                 }
@@ -109,7 +122,7 @@ if __name__ == "__main__":
             ).set_index("vertex")
 
         root = [v for v in tree.nodes if tree.in_degree(v) == 0][0]
-        root_label = full_labeling.loc[root, "label"]
+        root_label = full_labeling.iloc[int(root)]["label"]
     else:
         root_label = args.root
 
@@ -121,13 +134,14 @@ if __name__ == "__main__":
             args.leaf_labeling, sep="\t", header=None, names=column_names
         ).set_index("leaf")
 
-    edges = [(int(u[1:]), int(v[1:])) for (u, v) in tree.edges]
+    node_map = {j: i for i, j in enumerate(tree.nodes)}
+    edges = [(node_map[u], node_map[v]) for (u, v) in tree.edges]
     metient_tree = nx.from_edgelist(edges, create_using=nx.DiGraph())
 
     metient_labeling = pd.DataFrame(
         {
             "leaf": [
-                int(v[1:]) for v in leaf_labeling.index
+                node_map[str(v)] for v in leaf_labeling.index
             ],
             "label": leaf_labeling["label"],
         }

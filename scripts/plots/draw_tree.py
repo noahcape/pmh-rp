@@ -29,7 +29,7 @@ def parse_tree(tree_file, format='adjacency_list'):
     if format == 'adjacency_list':
         return nx.read_adjlist(tree_file, create_using=nx.DiGraph())
     elif format == 'edge_list':
-        return nx.read_edgelist(tree_file, create_using=nx.DiGraph())
+        return nx.read_edgelist(tree_file, create_using=nx.DiGraph(), data=(("weight", float),))
     elif format == 'newick':
         return from_newick_get_nx_tree(tree_file)
     else:
@@ -66,7 +66,10 @@ def main():
         T = parse_tree(tree, args.format)
         draw_graph(T, axes[i])
 
-    plt.show()
+    # plt.show()
+    plt.savefig(f"6_3.png", dpi=300, bbox_inches="tight")
+    print("Saved: 6_3.png")
+    plt.close()
 
 if __name__ == "__main__":
     main()

@@ -449,6 +449,30 @@ def stochastic_spr(T, num_perturbations=10):
 
     return T
 
+"""
+Flip labels of some number a leaves in the graph to simulate errors
+"""
+def flip_leaves(T: nx.DiGraph, num_flips=10):
+    T = T.copy()
+
+    leaves = []
+    anatomical_sites = []
+    for cell in T.nodes:
+        if len(list(T.successors(cell))) == 0:
+            leaves.append(cell)
+            if cell.anatomical_site not in anatomical_sites:
+                anatomical_sites.append(cell.anatomical_site)
+    
+    flips = np.random.choice(np.array(leaves), num_flips, replace=False)
+    for cell in flips:
+        new_label = np.random.choice(np.array(anatomical_sites))
+        while new_label == cell.anatomical_site:
+            new_label = np.random.choice(np.array(anatomical_sites))
+        idx = leaves.index(cell)
+        leaves[idx] = Cell(new_label, cell.identifier, cell.mutations)
+
+    return leaves
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Simulate metastatic cancer evolution along a phylogenetic tree.")
     parser.add_argument("-a", "--attempts", help="Number of attempts", type=int, default=10)
@@ -456,6 +480,7 @@ def parse_args():
     parser.add_argument("-o", "--output", help="Output prefix", default="simulation")
     parser.add_argument("-n", help="Number of leaves to sample", type=int, default=200)
     parser.add_argument("-e", "--errors", help="Number of errors (default: 0)", type=float, default=0)
+    parser.add_argument("-f", "--leaf-flips", help="Number of leaves to flip the label of.", type=int, default=0)
     parser.add_argument("--generations", help="Number of generations", type=int, default=40)
     parser.add_argument("--driver-prob", help="Driver mutation probability", type=float, default=2e-7)
     parser.add_argument("--driver-fitness", help="Driver mutation fitness effect", type=float, default=0.1)
@@ -499,6 +524,9 @@ if __name__ == "__main__":
     else:
         T_perturbed = T
 
+    if args.leaf_flips > 0:
+        flipped_leaves = flip_leaves(T, args.leaf_flips)
+
     migration_graph = nx.DiGraph()
     for (u, v) in T.edges():
         if u.anatomical_site == v.anatomical_site:
@@ -522,10 +550,22 @@ if __name__ == "__main__":
         for cell in T.nodes:
             f.write(f"s{identifier_map[cell.identifier]},{cell.anatomical_site}\n")
 
-    with open(f"{args.output}_leaf_labeling.csv", "w") as f:
+    with open(f"{args.output}_pertubed_leaf_labeling.csv", "w") as f:
         f.write("leaf,label\n")
         for cell in T_perturbed.nodes:
             if len(list(T_perturbed.successors(cell))) == 0:
+                f.write(f"s{identifier_map[cell.identifier]},{cell.anatomical_site}\n")
+
+    with open(f"{args.output}_leaf_labeling.csv", "w") as f:
+        f.write("leaf,label\n")
+        for cell in T.nodes:
+            if len(list(T.successors(cell))) == 0:
+                f.write(f"s{identifier_map[cell.identifier]},{cell.anatomical_site}\n")
+
+    if args.leaf_flips > 0:
+        with open(f"{args.output}_flipped_leaf_labeling.csv", "w") as f:
+            f.write("leaf,label\n")
+            for cell in flipped_leaves:
                 f.write(f"s{identifier_map[cell.identifier]},{cell.anatomical_site}\n")
 
     with open(f"{args.output}_migration_graph.csv", "w") as f:

@@ -27,9 +27,73 @@ import os
 
 from metient import metient
 
+def parse_multilabelings(fname, node_map):
+    """
+    Parse a file which contains labeling for vertices, return the labeling as well as the character_set
+    Each line is a new labeling where the first word is the node label and the following words, seperated by tabs (or spaces) represent multi labels
+    Return a dictionary where key = node and value = list of labels
+    """
+    labeling = {}
+    character_set = []
 
-def format_metient_data(tree, labeling, root_label, mutations=1):
-    locations = sorted(labeling["label"].unique())
+    with open(fname, "r") as f:
+        for line in f.readlines():
+            split_line = line.split()
+
+            if len(split_line) <= 1:
+                raise ValueError(f"Lines in labeling file for clone tree ancestral reconstruction expected to be of the form <node> <label> (<label>)*")
+
+            labels = split_line[1:]
+            node = node_map[split_line[0]]
+            labeling[node] = labels
+            character_set.extend(labels)
+
+    return (labeling, list(set(character_set)))
+            
+
+class MultiLabeledTree:
+    def __init__(self, tree, labeling: dict, character_set):
+        """
+        Create a new multilabeled graph storing the graph and labels seperately
+        
+        Params:
+            edgelist: graph edgelist as a list of tuples (source, dest)
+            labeling: dictionary key = node, value = label(s); expect that label(s) are lists
+        """        
+        self.tree = tree
+        self.labeling = labeling
+        self.character_set = character_set
+
+    @classmethod
+    def from_tree(cls, tree, labeling: dict, character_set):
+        """
+        Create a new mutlilabeled tree from an already constructed tree
+        """
+
+        return cls(tree, labeling, character_set)
+    
+    @classmethod
+    def from_edgelist(cls, edgelist, labeling: dict, character_set):
+        tree = nx.DiGraph()
+        tree.add_edges_from(edgelist)
+        return cls(tree, labeling, character_set)
+
+    def leaf_label_set(self):
+        """
+            Return set of labels appearing in leaves under v.
+        """
+        leaves = [u for u in self.tree.nodes if self.tree.out_degree(u) == 0]
+        s = set()
+        for u in leaves:
+            labs = self.labeling.get(u, [])
+            s.update(labs)
+        return s
+
+            
+
+# labeling is a dict with node as entry and labels as the value
+def format_metient_data(tree, labeling: dict, character_set, root_label, mutations=1):
+    locations = character_set
     label_idx = {s: i for i, s in enumerate(locations)}
 
     rows = []
@@ -44,7 +108,7 @@ def format_metient_data(tree, labeling, root_label, mutations=1):
                     "cluster_label": str(u).replace(":", "_"),
                     "present": (
                         1
-                        if (u in labeling.index and labeling.loc[u, "label"] == s)
+                        if (u in labeling.keys() and s in labeling[u])
                         else 0
                     ),
                     "site_category": "primary" if s == root_label else "metastasis",
@@ -60,10 +124,9 @@ def parse_args():
         description="Convert tlp cancer evolution simulations into metient input"
     )
     parser.add_argument("tree", help="True tree in edgelist format")
-    parser.add_argument("leaf_labeling", help="Leaf labeling of tree")
-    parser.add_argument("-f", "--full-labeling", help="True vertex labeling in CSV format", default=None)
-    parser.add_argument("-o", "--output", help="output prefix")
+    parser.add_argument("labeling", help="Leaf labeling of tree")
     parser.add_argument("-x", "--index", help="Index specifier for input", default=0)
+    parser.add_argument("-o", "--output", help="Output file", default=0)
     parser.add_argument("-r", "--root", help="Root label", default=None)
     parser.add_argument("-m", "--metient-dir", help="Metient dir")
     return parser.parse_args()
@@ -83,11 +146,10 @@ if __name__ == "__main__":
 
     args = parse_args()
 
-    if args.full_labeling == None and args.root == None:
-        print("Must either be given a full labeling or a root label to determine the label of the root for metient")    
+    if args.root == None:
+        print("Must specify the root label for metient")    
         exit
 
-    parent = os.path.dirname(args.output)
     metient_dir = args.metient_dir
     try:
         os.mkdir(metient_dir)
@@ -99,45 +161,20 @@ if __name__ == "__main__":
         args.tree, nodetype=str, create_using=nx.DiGraph(), data=(("weight", float),)
     )
 
-    if not args.full_labeling == None:
-        try:
-            full_labeling = pd.read_csv(args.full_labeling, sep=",").set_index("vertex")
-        except Exception as _:
-            column_names = ["vertex", "label"]
-            full_labeling = pd.read_csv(
-                args.full_labeling, sep="\t", header=None, names=column_names
-            ).set_index("vertex")
-
-        root = [v for v in tree.nodes if tree.in_degree(v) == 0][0]
-        root_label = full_labeling.loc[root, "label"]
-    else:
-        root_label = args.root
-
-    try:
-        leaf_labeling = pd.read_csv(args.leaf_labeling, sep=",").set_index("leaf")
-    except Exception as _:
-        column_names = ["leaf", "label"]
-        leaf_labeling = pd.read_csv(
-            args.leaf_labeling, sep="\t", header=None, names=column_names
-        ).set_index("leaf")
-
-    edges = [(int(u[1:]), int(v[1:])) for (u, v) in tree.edges]
+    node_map = {j: i for i, j in enumerate(tree.nodes)}
+    print(node_map)
+    edges = [(node_map[u], node_map[v]) for (u, v) in tree.edges]
     metient_tree = nx.from_edgelist(edges, create_using=nx.DiGraph())
 
-    metient_labeling = pd.DataFrame(
-        {
-            "leaf": [
-                int(v[1:]) for v in leaf_labeling.index
-            ],
-            "label": leaf_labeling["label"],
-        }
-    ).set_index("leaf")
+    (labeling, character_set) = parse_multilabelings(args.labeling, node_map)
+    multilabel_tree = MultiLabeledTree.from_tree(metient_tree, labeling, character_set)
+
 
     # Note that we pass metient tree which is the remapped nodes to 0-n indexing
-    metient_df = format_metient_data(metient_tree, metient_labeling, root_label)
+    metient_df = format_metient_data(metient_tree, labeling,character_set, args.root)
 
-    metient_data_path = f"{args.output}_metient.tsv"
-    metient_tree_path = f"{args.output}_metient_tree.txt"
+    metient_data_path = f"{args.output}/metient.tsv"
+    metient_tree_path = f"{args.output}/metient_tree.txt"
 
     try:
         # write out the metient data to tsv

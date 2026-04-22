@@ -1,13 +1,20 @@
 import subprocess
 import argparse
+import json
 
 import networkx as nx
 import pandas as pd
 import seaborn as sns
 import numpy as np
+from networkx.drawing.nx_pydot import to_pydot
+import pydot
+import matplotlib.pyplot as plt
+from matplotlib.patches import Wedge, Patch
 
 from loguru import logger
 from Bio import Phylo
+
+FONT="Arial-Bold"
 
 """
 Converts a tree in newick format into a directed networkx graph.
@@ -52,13 +59,142 @@ def rgb_tuple_to_hex(rgb):
     rgb = [int(255 * x) for x in rgb]
     return "#{:02x}{:02x}{:02x}".format(*rgb)
 
+def read_partial_labeling(labeling_file):
+    labeling = {}
+
+    with open(labeling_file) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+
+            parts = line.split("\t")
+            node = parts[0]
+            labels = parts[1:]  # variable length
+            labeling[node] = labels
+
+    return labeling
+
+
+def draw_multi_colored_tree(edge_file, labeling_file, output,
+                      default_color="#DDDDDD", node_radius=0.15):
+    # --- Read edge list ---
+    edges = pd.read_csv(edge_file, sep="\t", header=None, dtype=str,
+                        names=["u", "v"])
+    G = nx.DiGraph()
+    G.add_edges_from(edges.itertuples(index=False, name=None))
+
+    # --- Read partial labeling ---
+    labeling = read_partial_labeling(labeling_file)
+    print(G.edges)
+    print(labeling)
+
+    all_labels = list(set([l for labels in labeling.values() for l in labels]))
+    num_colors = len(all_labels)
+    colors = sns.color_palette(n_colors=num_colors, desat=0.5)
+    labels = sorted(all_labels)
+    color_map = {label: colors[i] for i, label in enumerate(labels)}
+
+    # --- Layout ---
+    pos = nx.nx_agraph.graphviz_layout(G, prog="dot")
+
+    # --- Normalize layout (CRITICAL) ---
+    xs, ys = zip(*pos.values())
+    xmin, xmax = min(xs), max(xs)
+    ymin, ymax = min(ys), max(ys)
+
+    pos = {
+        n: ((x - xmin) / (xmax - xmin),
+            (y - ymin) / (ymax - ymin))
+        for n, (x, y) in pos.items()
+    }
+
+    node_radius = 0.05
+
+    fig, ax = plt.subplots(figsize=(10, 8))
+
+    # --- Draw edges ---
+    nx.draw_networkx_edges(G, pos, ax=ax, edge_color="black", width=3.5, arrows=True, min_target_margin=20)
+
+    # --- Draw nodes as pies ---
+    used_labels = set()
+    show_unlabeled = False
+
+    for node, (x, y) in pos.items():
+        labels = labeling.get(node, [])
+
+        if not labels:
+            show_unlabeled = True
+            ax.add_patch(
+                plt.Circle(
+                    (x, y), node_radius,
+                    facecolor=default_color,
+                    edgecolor="black",
+                    linewidth=0.5,
+                    zorder=3
+                )
+            )
+            continue
+
+        angle = 360 / len(labels)
+        start = 0
+
+        for label in labels:
+            color = color_map.get(label, default_color)
+            used_labels.add(label)
+
+            ax.add_patch(
+                Wedge(
+                    (x, y), node_radius,
+                    start, start + angle,
+                    facecolor=color,
+                    edgecolor="black",
+                    linewidth=0.05,
+                    zorder=3
+                )
+            )
+            start += angle
+
+    # --- Fix axis limits (ABSOLUTELY REQUIRED) ---
+    pad = node_radius * 2
+    ax.set_xlim(-pad, 1 + pad)
+    ax.set_ylim(-pad, 1 + pad)
+
+    # --- Legend ---
+    # legend = [
+    #     Patch(facecolor=color_map[l], edgecolor=color_map[l], label=" ".join(l.split("_")))
+    #     for l in sorted(used_labels)
+    # ]
+    # if show_unlabeled:
+    #     legend.append(
+    #         Patch(facecolor=default_color, edgecolor=default_color, label="unlabeled")
+    #     )
+
+    # ax.legend(
+    #     handles=legend,
+    #     loc="center left",
+    #     bbox_to_anchor=(1.0, 0.5),
+    #     frameon=False,
+    #     fontsize=18
+    # )
+
+    fig.tight_layout(rect=[0, 0, 0.75, 1])
+
+    ax.set_aspect("equal")
+    ax.axis("off")
+    plt.savefig(output, dpi=300)
+    print("Saved:", output)
+    plt.close()
+
 def draw_colored_tree(T, labeling, color_map, f, convert_to_hex=True, branch_lengths=False):
     f.write("digraph T {\n")
+    
+    
     for u in T.nodes():
-        if u in labeling.index:
-            label = labeling.loc[u, 'label']
+        if to_vertex(u) in labeling['vertex'].unique():
+            label = labeling.loc[labeling["vertex"] == to_vertex(u), 'label'].iloc[0]
             color = rgb_tuple_to_hex(color_map[label]) if convert_to_hex else color_map[label]
-            f.write(f"\t\"{u}\" [label=\"{label}\", fillcolor=\"{color}\", style=filled];\n")
+            f.write(f"\t\"{u}\" [fillcolor=\"{color}\", style=filled];\n")
         else:
             f.write(f"\t\"{u}\";\n")
 
@@ -69,27 +205,47 @@ def draw_colored_tree(T, labeling, color_map, f, convert_to_hex=True, branch_len
             f.write(f"\t\"{u}\" -> \"{v}\";\n")
     f.write("}\n")
 
-def make_color_graph(T, labeling, color_map, convert_to_hex=True):
-    color_graph = nx.DiGraph()
+def make_color_graph(T, labeling, color_map, convert_to_hex=True, show_label=True):
+    color_graph = nx.MultiDiGraph()
     for u in labeling['label'].unique():
         color = rgb_tuple_to_hex(color_map[u]) if convert_to_hex else color_map[u]
-        color_graph.add_node(u, color=color)
+        if show_label:
+            color_graph.add_node(u, color=color, shape="box", fillcolor=color, fontname=FONT, fontcolor="white", penwidth=3.0, style="filled,rounded")
+        else:
+            color_graph.add_node(u, color=color, shape="box", fillcolor=color, label="", penwidth=3.0, style="filled,rounded")
     for u, v in T.edges():
-        u_label = labeling.loc[u, 'label']
-        v_label = labeling.loc[v, 'label']
+        u_label = labeling.loc[labeling["vertex"] == to_vertex(u), 'label'].iloc[0]
+        v_label = labeling.loc[labeling["vertex"] == to_vertex(v), 'label'].iloc[0]
         if u_label != v_label:
             if not color_graph.has_edge(u_label, v_label):
-                color_graph.add_edge(u_label, v_label, count=1)
+                u_color = rgb_tuple_to_hex(color_map[u_label]) if convert_to_hex else color_map[u]
+                v_color = rgb_tuple_to_hex(color_map[v_label]) if convert_to_hex else color_map[v]
+                # color_graph.add_edge(u_label, v_label, label="1", count=1, penwidth=2.5, color=f'"{u_color};0.5:{v_color}"')
+                color_graph.add_edge(u_label, v_label, penwidth=2.5, color=f'"{u_color};0.5:{v_color}"')
             else:
-                color_graph[u_label][v_label]['count'] += 1
+                u_color = rgb_tuple_to_hex(color_map[u_label]) if convert_to_hex else color_map[u]
+                v_color = rgb_tuple_to_hex(color_map[v_label]) if convert_to_hex else color_map[v]
+                # color_graph[u_label][v_label]['count'] += 1
+                # count = color_graph[u_label][v_label]['count']
+                # color_graph.add_edge(u_label, v_label, label=f"{count}", count=count, penwidth=2.5, color=f'"{u_color};0.5:{v_color}"')
+                color_graph.add_edge(u_label, v_label, penwidth=2.5, color=f'"{u_color};0.5:{v_color}"')
 
     return color_graph
 
 def draw_color_graph(G, f, multi_edges=False):
-    f.write("digraph G {\n")
+    # f.write("digraph G {\n")
+    f.write("digraph T {\n")
     f.write("\tbeautify=true\n")
+    f.write("\trankdir=TB;\n")           # top-to-bottom
+    f.write("\tnodesep=0.2;\n")
+    f.write("\tranksep=0.5;\n")
+    f.write("\tsplines=false;\n")
+
+    # Node defaults to match TikZ style
+    f.write('\tnode [shape=circle, style=filled, fontname="Arial", fontsize=12, width=0.25, fixedsize=true];\n')
     for u in G.nodes():
-        f.write(f"\t\"{u}\" [fillcolor=\"{G.nodes[u]['color']}\", style=filled];\n")
+        f.write(f"\t\"{u}\" [label=\"\", fillcolor=\"{G.nodes[u]['color']}\", style=filled];\n")
+        # f.write(f"\t\"{u}\" [fillcolor=\"{G.nodes[u]['color']}\", style=filled];\n")
     for u, v in G.edges():
         if multi_edges:
             count = G[u][v]['count']
@@ -107,6 +263,8 @@ def parse_args():
     parser.add_argument("-b", "--branch-lengths", help="Display branch lengths", action="store_true", default=False)
     parser.add_argument("-s", "--svg", help="Output as SVG", action="store_true", default=False)
     parser.add_argument("-p", "--palette", help="The palette to use", default=None)
+    parser.add_argument("-u", "--multi-labeling", help="Draw a mutli labeled tree", action="store_true", default=False)
+    parser.add_argument("-t", "--labeling-tabs", help="Tab seperated labeling file", action="store_true", default=False)
 
     parser.add_argument(
         "-f", "--format", help="The format of the input trees", 
@@ -116,12 +274,28 @@ def parse_args():
 
     return parser.parse_args()
 
+def to_vertex(x):
+    try:
+        return int(x)
+    except ValueError:
+        return x  
+
 def main():
     args = parse_args()
-    T = parse_tree(args.tree, args.format)
-    labeling = pd.read_csv(args.labeling).set_index('vertex')
-    # labeling['label'] = labeling['label'].str.split('_').str.get(-1)
 
+    if args.multi_labeling:
+        draw_multi_colored_tree(args.tree, args.labeling, f"{args.output}_mutli_color_graph.pdf")
+        return
+
+    T = parse_tree(args.tree, args.format)
+    if not args.labeling_tabs:
+        labeling = pd.read_csv(args.labeling, sep=",")
+    else:
+        column_names = ["vertex", "label"] 
+        labeling = pd.read_csv(args.labeling, sep="\t", header=None, names=column_names)
+    labeling['label'] = labeling['label'].str.split('_').str.join(" ")
+    labeling['vertex'] = labeling['vertex'].map(to_vertex)
+    
     if args.palette is not None:
         palette = pd.read_csv(args.palette)
         palette['color'] = "#" + palette['color']
@@ -129,26 +303,39 @@ def main():
         convert_to_hex = False
     else:
         num_colors = len(labeling['label'].unique())
-        colors = [(r,g,b) for [r,g,b] in sns.color_palette("Spectral", num_colors)]
-        skip = int(np.floor(len(colors) / (num_colors + 1)) - 1)
+        colors = sns.color_palette(n_colors=num_colors, desat=0.5)
         labels = sorted(labeling['label'].unique())
-        color_map = {label: colors[i * skip] for i, label in enumerate(labels)}
+        color_map = {label: colors[i] for i, label in enumerate(labels)}
         convert_to_hex = True
         
 
     with open(f"{args.output}_colored_tree.dot", "w") as f:
         draw_colored_tree(T, labeling, color_map, f, convert_to_hex, args.branch_lengths)
 
-    with open(f"{args.output}_color_graph.dot", "w") as f:
-        G = make_color_graph(T, labeling, color_map, convert_to_hex)
-        draw_color_graph(G, f, args.multi_edges)
+    G = make_color_graph(T, labeling, color_map, convert_to_hex, True)
+    p = to_pydot(G)
+    p.write_pdf(f"{args.output}_migration_graph.pdf")
+
+    with open(f"{args.output}_info.json", "w") as f:
+        migrations = 0
+        edges = 0
+        for u, v in G.edges():
+            edges += 1 
+            # migrations += G[u][v]['count']
+        
+        data = {}
+        data["num_edges"] = edges
+        data["migrations"] = migrations
+
+        f.write(json.dumps(data))
+
 
     if args.svg:
         logger.info(f"Converting {args.output}_colored_tree.dot to {args.output}_colored_tree.svg...")
-        subprocess.run(["dot", "-Tsvg", f"{args.output}_colored_tree.dot", "-o", f"{args.output}_colored_tree.svg"])
+        subprocess.run(["dot", "-Tpdf", f"{args.output}_colored_tree.dot", "-o", f"{args.output}_colored_tree.pdf"])
 
-        logger.info(f"Converting {args.output}_color_graph.dot to {args.output}_color_graph.svg...")
-        subprocess.run(["dot", "-Tsvg", f"{args.output}_color_graph.dot", "-o", f"{args.output}_color_graph.svg"])
+        # logger.info(f"Converting {args.output}_color_graph.dot to {args.output}_color_graph.svg...")
+        # subprocess.run(["dot", "-Tsvg", f"{args.output}_color_graph.dot", "-o", f"{args.output}_color_graph.svg"])
 
 if __name__ == "__main__":
     main()
