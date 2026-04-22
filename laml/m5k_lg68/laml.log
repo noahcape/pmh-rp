@@ -1,0 +1,8 @@
+Launching LAML version 0.0.2
+LAML was called as follows: /n/fs/ragr-data/users/schmidt/miniconda3/envs/breaked/bin/run_laml -t seed_tree.newick -c laml_character_matrix.csv -p laml_mutation_priors.csv -o laml --delimiter comma --nInitials 1 -m -1 --topology_search --parallel --maxIters 1000
+All polytomies will be resolved
+Starting topology search
+Running topology search in parallel...
+Tree height pre-scaling: 0.6065980788058192, input timescale: 1.0
+Tree height after scaling: 1.0, mutation rate: 0.6065980788058192
+Runtime (s): 360.15186646208167
