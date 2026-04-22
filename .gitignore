@@ -453,8 +453,6 @@ examples/cancer_evolution
 simulations
 sims
 
-/laml/
-
 /sims/
 /rust_sims/
 /clone_trees/
