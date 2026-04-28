@@ -1,0 +1,96 @@
+2026-01-19 12:34:27.794 | INFO     | __main__:create_tree_labeling_polytope:383 - Creating tree labeling polytope for tree with 104 nodes and 103 edges.
+2026-01-19 12:34:27.795 | INFO     | __main__:create_tree_labeling_polytope:384 - Character set has size: 6
+2026-01-19 12:34:27.874 | INFO     | __main__:append_migrations:428 - Adding migration constraints.
+Namespace(method='fast_machina', tree='/n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg68/laml_tree_edgelist.tsv', labels='/n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg68/laml_leaf_labeling.csv', constraints='polyclonal_dag', output='/n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg68/tlp_dag', root=None, label='LL', edge_regularized=0, regularizer_weight=1.0, clone_tree_instance=0)
+Set parameter Username
+Academic license - for non-commercial use only - expires 2026-12-12
+Set parameter LazyConstraints to value 1
+2026-01-19 12:34:28.506 | INFO     | __main__:fast_machina:649 - Solving full MILP model
+Set parameter MIPGap to value 0.15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Non-default parameters:
+MIPGap  0.15
+LazyConstraints  1
+
+Optimize a model with 4051 rows, 3774 columns and 15534 nonzeros (Min)
+Model fingerprint: 0xa274d5a2
+Model has 3120 linear objective coefficients
+Variable types: 3744 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint x4396 by 1.000000000
+
+Presolve removed 1744 rows and 1691 columns
+Presolve time: 0.02s
+Presolved: 2307 rows, 2083 columns, 8828 nonzeros
+Variable types: 2053 continuous, 30 integer (30 binary)
+2026-01-19 12:34:28.566 | INFO     | __main__:dag_callback:464 - Adding constraint for cycle ['RW', 'RE'].
+
+Root relaxation: objective 2.900000e+01, 217 iterations, 0.01 seconds (0.00 work units)
+2026-01-19 12:34:28.577 | INFO     | __main__:dag_callback:464 - Adding constraint for cycle ['RW', 'RE', 'LL', 'M1'].
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   29.00000    0    -          -   29.00000      -     -    0s
+2026-01-19 12:34:28.580 | INFO     | __main__:dag_callback:464 - Adding constraint for cycle ['RW', 'LL', 'M1'].
+     0     0   29.00000    0    -          -   29.00000      -     -    0s
+2026-01-19 12:34:28.583 | INFO     | __main__:dag_callback:464 - Adding constraint for cycle ['M1', 'LL'].
+     0     0   29.00000    0    -          -   29.00000      -     -    0s
+     0     0   29.50000    0    6          -   29.50000      -     -    0s
+Another try with MIP start
+2026-01-19 12:34:28.599 | INFO     | __main__:dag_callback:464 - Adding constraint for cycle ['RW', 'RE', 'M2'].
+     0     0   29.50000    0    6          -   29.50000      -     -    0s
+2026-01-19 12:34:28.609 | INFO     | __main__:dag_callback:464 - Adding constraint for cycle ['RW', 'M1'].
+2026-01-19 12:34:28.615 | INFO     | __main__:dag_callback:464 - Adding constraint for cycle ['RW', 'RE', 'LL'].
+2026-01-19 12:34:28.622 | INFO     | __main__:dag_callback:464 - Adding constraint for cycle ['RE', 'LL'].
+2026-01-19 12:34:28.630 | INFO     | __main__:dag_callback:464 - Adding constraint for cycle ['RE', 'LL', 'M1'].
+H    0     0                      33.0000000   29.50000  10.6%     -    0s
+
+Cutting planes:
+  Lazy constraints: 9
+
+Explored 1 nodes (327 simplex iterations) in 0.11 seconds (0.05 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 1: 33 
+
+Optimal solution found (tolerance 1.50e-01)
+Best objective 3.300000000000e+01, best bound 2.950000000000e+01, gap 10.6061%
+
+User-callback calls 318, time in user-callback 0.01 sec
+2026-01-19 12:34:28.693 | INFO     | __main__:write_results:58 - Writing out results from model solution.
+<------ Migrations in labeling: 33 ------>
+<------ Number of edges in migration graph: 12 ------>
+	Command being timed: "python /n/fs/ragr-research/projects/pmh-rp/scripts/tlp.py fast_machina /n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg68/laml_tree_edgelist.tsv /n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg68/laml_leaf_labeling.csv -o /n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg68/tlp_dag -c polyclonal_dag -l LL"
+	User time (seconds): 7.18
+	System time (seconds): 0.37
+	Percent of CPU this job got: 170%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.44
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 232904
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 66302
+	Voluntary context switches: 2685
+	Involuntary context switches: 1014
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 56
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

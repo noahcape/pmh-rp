@@ -1,0 +1,380 @@
+2026-04-27 09:21:29.255 | INFO     | __main__:create_tree_labeling_polytope:181 - Creating tree labeling polytope for tree with 105 nodes and 104 edges.
+2026-04-27 09:21:29.255 | INFO     | __main__:create_tree_labeling_polytope:184 - Character set has size: 6
+2026-04-27 09:21:29.286 | INFO     | __main__:solve_model:255 - Solving full MILP model
+2026-04-27 09:21:29.286 | INFO     | __main__:set_objective:145 - Setting object with weight: 0.0
+2026-04-27 09:21:29.286 | INFO     | __main__:append_migrations:242 - Adding migration constraints.
+Set parameter Username
+Set parameter LicenseID to value 2779251
+Academic license - for non-commercial use only - expires 2027-02-15
+2026-04-27 09:21:29.623 | INFO     | __main__:solve_model:302 - Solving the full MILP model
+Set parameter MIPGap to value 0.15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Non-default parameters:
+MIPGap  0.15
+
+Optimize a model with 4051 rows, 3774 columns and 15534 nonzeros (Min)
+Model fingerprint: 0x527dba05
+Model has 3090 linear objective coefficients
+Variable types: 3744 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e-04, 7e-02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint x4396 by 1.000000000
+
+Presolve removed 4051 rows and 3774 columns
+Presolve time: 0.01s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.01 work units)
+Thread count was 1 (of 56 available processors)
+
+Solution count 1: 0.669654 
+
+Optimal solution found (tolerance 1.50e-01)
+Best objective 6.696538570165e-01, best bound 6.696538570165e-01, gap 0.0000%
+2026-04-27 09:21:29.689 | INFO     | __main__:set_objective:145 - Setting object with weight: 0.1
+2026-04-27 09:21:30.005 | INFO     | __main__:solve_model:302 - Solving the full MILP model
+Set parameter MIPGap to value 0.15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Non-default parameters:
+MIPGap  0.15
+
+Optimize a model with 4051 rows, 3774 columns and 15534 nonzeros (Min)
+Model fingerprint: 0xf5d10cc7
+Model has 3120 linear objective coefficients
+Variable types: 3744 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e-04, 1e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 3.66965
+
+Presolve removed 1804 rows and 1747 columns
+Presolve time: 0.02s
+Presolved: 2247 rows, 2027 columns, 8622 nonzeros
+Variable types: 1997 continuous, 30 integer (30 binary)
+Found heuristic solution: objective 2.8696539
+
+Root relaxation: objective 1.708370e+00, 660 iterations, 0.02 seconds (0.02 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    1.70837    0   26    2.86965    1.70837  40.5%     -    0s
+H    0     0                       2.1225522    1.70837  19.5%     -    0s
+H    0     0                       1.9383568    1.70837  11.9%     -    0s
+
+Explored 1 nodes (661 simplex iterations) in 0.07 seconds (0.06 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 4: 1.93836 2.12255 2.86965 3.66965 
+
+Optimal solution found (tolerance 1.50e-01)
+Best objective 1.938356810469e+00, best bound 1.708369740429e+00, gap 11.8651%
+2026-04-27 09:21:30.124 | INFO     | __main__:set_objective:145 - Setting object with weight: 0.2
+2026-04-27 09:21:30.389 | INFO     | __main__:solve_model:302 - Solving the full MILP model
+Set parameter MIPGap to value 0.15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Non-default parameters:
+MIPGap  0.15
+
+Optimize a model with 4051 rows, 3774 columns and 15534 nonzeros (Min)
+Model fingerprint: 0x77d6d589
+Model has 3120 linear objective coefficients
+Variable types: 3744 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e-04, 2e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 2.63836
+
+Presolve removed 1804 rows and 1747 columns
+Presolve time: 0.02s
+Presolved: 2247 rows, 2027 columns, 8622 nonzeros
+Variable types: 1997 continuous, 30 integer (30 binary)
+
+Root relaxation: objective 2.212973e+00, 460 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    2.21297    0   25    2.63836    2.21297  16.1%     -    0s
+     0     0          -    0         2.63836    2.24263  15.0%     -    0s
+
+Cutting planes:
+  Gomory: 6
+  MIR: 34
+
+Explored 1 nodes (539 simplex iterations) in 0.07 seconds (0.06 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 1: 2.63836 
+
+Optimal solution found (tolerance 1.50e-01)
+Best objective 2.638356810469e+00, best bound 2.242630044829e+00, gap 14.9990%
+2026-04-27 09:21:30.511 | INFO     | __main__:set_objective:145 - Setting object with weight: 0.3
+2026-04-27 09:21:30.821 | INFO     | __main__:solve_model:302 - Solving the full MILP model
+Set parameter MIPGap to value 0.15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Non-default parameters:
+MIPGap  0.15
+
+Optimize a model with 4051 rows, 3774 columns and 15534 nonzeros (Min)
+Model fingerprint: 0x27f0232b
+Model has 3120 linear objective coefficients
+Variable types: 3744 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e-04, 3e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 3.33836
+
+Presolve removed 1804 rows and 1747 columns
+Presolve time: 0.02s
+Presolved: 2247 rows, 2027 columns, 8622 nonzeros
+Variable types: 1997 continuous, 30 integer (30 binary)
+
+Root relaxation: objective 2.712973e+00, 471 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    2.71297    0   25    3.33836    2.71297  18.7%     -    0s
+     0     0    2.75969    0   30    3.33836    2.75969  17.3%     -    0s
+     0     0    2.80123    0   30    3.33836    2.80123  16.1%     -    0s
+H    0     0                       3.2334866    2.80123  13.4%     -    0s
+
+Cutting planes:
+  Gomory: 3
+  Cover: 1
+  MIR: 33
+
+Explored 1 nodes (800 simplex iterations) in 0.13 seconds (0.10 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 2: 3.23349 3.33836 
+
+Optimal solution found (tolerance 1.50e-01)
+Best objective 3.233486639695e+00, best bound 2.801229173172e+00, gap 13.3682%
+2026-04-27 09:21:31.003 | INFO     | __main__:set_objective:145 - Setting object with weight: 0.4
+2026-04-27 09:21:31.272 | INFO     | __main__:solve_model:302 - Solving the full MILP model
+Set parameter MIPGap to value 0.15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Non-default parameters:
+MIPGap  0.15
+
+Optimize a model with 4051 rows, 3774 columns and 15534 nonzeros (Min)
+Model fingerprint: 0x83da94af
+Model has 3120 linear objective coefficients
+Variable types: 3744 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e-04, 4e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 3.73349
+
+Presolve removed 1804 rows and 1747 columns
+Presolve time: 0.02s
+Presolved: 2247 rows, 2027 columns, 8622 nonzeros
+Variable types: 1997 continuous, 30 integer (30 binary)
+
+Root relaxation: interrupted, 397 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0          -    0         3.73349    3.17355  15.0%     -    0s
+
+Explored 1 nodes (397 simplex iterations) in 0.03 seconds (0.03 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 1: 3.73349 
+
+Optimal solution found (tolerance 1.50e-01)
+Best objective 3.733486639695e+00, best bound 3.173551514568e+00, gap 14.9976%
+2026-04-27 09:21:31.409 | INFO     | __main__:set_objective:145 - Setting object with weight: 0.5
+2026-04-27 09:21:31.673 | INFO     | __main__:solve_model:302 - Solving the full MILP model
+Set parameter MIPGap to value 0.15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Non-default parameters:
+MIPGap  0.15
+
+Optimize a model with 4051 rows, 3774 columns and 15534 nonzeros (Min)
+Model fingerprint: 0xe7215254
+Model has 3120 linear objective coefficients
+Variable types: 3744 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e-04, 5e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 4.23349
+
+Presolve removed 1804 rows and 1747 columns
+Presolve time: 0.02s
+Presolved: 2247 rows, 2027 columns, 8622 nonzeros
+Variable types: 1997 continuous, 30 integer (30 binary)
+
+Root relaxation: interrupted, 341 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0          -    0         4.23349    3.59909  15.0%     -    0s
+
+Explored 1 nodes (341 simplex iterations) in 0.03 seconds (0.03 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 1: 4.23349 
+
+Optimal solution found (tolerance 1.50e-01)
+Best objective 4.233486639695e+00, best bound 3.599088171299e+00, gap 14.9852%
+2026-04-27 09:21:31.753 | INFO     | __main__:set_objective:145 - Setting object with weight: 0.6
+2026-04-27 09:21:32.071 | INFO     | __main__:solve_model:302 - Solving the full MILP model
+Set parameter MIPGap to value 0.15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Non-default parameters:
+MIPGap  0.15
+
+Optimize a model with 4051 rows, 3774 columns and 15534 nonzeros (Min)
+Model fingerprint: 0x1c31d20d
+Model has 3120 linear objective coefficients
+Variable types: 3744 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e-04, 6e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 4.73349
+
+Presolve removed 1804 rows and 1747 columns
+Presolve time: 0.02s
+Presolved: 2247 rows, 2027 columns, 8622 nonzeros
+Variable types: 1997 continuous, 30 integer (30 binary)
+
+Root relaxation: interrupted, 326 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0          -    0         4.73349    4.02366  15.0%     -    0s
+
+Explored 1 nodes (326 simplex iterations) in 0.03 seconds (0.03 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 1: 4.73349 
+
+Optimal solution found (tolerance 1.50e-01)
+Best objective 4.733486639695e+00, best bound 4.023663060070e+00, gap 14.9958%
+2026-04-27 09:21:32.152 | INFO     | __main__:set_objective:145 - Setting object with weight: 0.7
+2026-04-27 09:21:32.421 | INFO     | __main__:solve_model:302 - Solving the full MILP model
+Set parameter MIPGap to value 0.15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Non-default parameters:
+MIPGap  0.15
+
+Optimize a model with 4051 rows, 3774 columns and 15534 nonzeros (Min)
+Model fingerprint: 0x6d774b87
+Model has 3120 linear objective coefficients
+Variable types: 3744 continuous, 30 integer (30 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e-04, 7e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 5.23349
+
+Presolve removed 1804 rows and 1747 columns
+Presolve time: 0.02s
+Presolved: 2247 rows, 2027 columns, 8622 nonzeros
+Variable types: 1997 continuous, 30 integer (30 binary)
+
+Root relaxation: interrupted, 306 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0          -    0         5.23349    4.47667  14.5%     -    0s
+
+Explored 1 nodes (306 simplex iterations) in 0.03 seconds (0.02 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 1: 5.23349 
+
+Optimal solution found (tolerance 1.50e-01)
+Best objective 5.233486639695e+00, best bound 4.476669300388e+00, gap 14.4611%
+2026-04-27 09:21:32.500 | INFO     | __main__:write_results:103 - Writing out results from model solution.
+[22, 7, 7, 5, 5, 5, 5, 5] [np.float64(0.6696538570165178), np.float64(1.2383568104694964), np.float64(1.2383568104694966), np.float64(1.7334866396949735), np.float64(1.7334866396949735), np.float64(1.7334866396949735), np.float64(1.7334866396949735), np.float64(1.7334866396949735)]
+No knee use regularization weight of 0.5
+<------ Migrations in labeling: 39 ------>
+<------ Number of edges in migration graph: 5 ------>
+	Command being timed: "python /n/fs/ragr-research/projects/pmh-rp/scripts/tlp_likelihood.py /n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg68/laml_tree_edgelist.tsv /n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg68/laml_leaf_labeling.csv ./laml/qmatrix_p1.csv -o /n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg68/reg_maxl_p1 -l LL -p"
+	User time (seconds): 16.94
+	System time (seconds): 0.36
+	Percent of CPU this job got: 320%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.40
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 278460
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 82089
+	Voluntary context switches: 3154
+	Involuntary context switches: 317
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 136
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

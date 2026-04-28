@@ -1,0 +1,101 @@
+Set parameter Username
+Academic license - for non-commercial use only - expires 2026-12-12
+Set parameter MIPGap to value 0
+Set parameter PoolSearchMode to value 2
+Set parameter Threads to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+Set parameter LogToConsole to value 0
+LL-	0	163	68	12	588.1538474559784
+LL-	1	163	68	12	588.1538474559784
+LL-	2	163	68	12	588.1538474559784
+LL-	3	163	68	12	588.1538474559784
+LL-	4	163	68	12	588.1538474559784
+LL-	5	163	68	12	588.1538474559784
+LL-	6	163	68	12	588.1538474559784
+LL-	7	163	68	12	588.1538474559784
+LL-	8	163	68	12	588.1538474559784
+LL-	9	163	68	12	588.1538474559784
+LL-	10	163	68	12	588.1538474559784
+LL-	11	163	68	12	588.1538474559784
+LL-	12	163	68	12	588.1538474559784
+LL-	13	163	68	12	588.1538474559784
+LL-	14	163	68	12	588.1538474559784
+LL-	15	163	68	12	588.1538474559784
+LL-	16	163	68	12	588.1538474559784
+LL-	17	163	68	12	588.1538474559784
+LL-	18	163	68	12	588.1538474559784
+LL-	19	163	68	12	588.1538474559784
+LL-	20	163	68	12	588.1538474559784
+LL-	21	163	68	12	588.1538474559784
+LL-	22	163	68	12	588.1538474559784
+LL-	23	163	68	12	588.1538474559784
+LL-	24	163	68	12	588.1538474559784
+LL-	25	163	68	12	588.1538474559784
+LL-	26	163	68	12	588.1538474559784
+LL-	27	163	68	12	588.1538474559784
+LL-	28	163	68	12	588.1538474559784
+LL-	29	163	68	12	588.1538474559784
+LL-	30	163	68	12	588.1538474559784
+LL-	31	163	68	12	588.1538474559784
+LL-	32	163	68	12	588.1538474559784
+LL-	33	163	68	12	588.1538474559784
+LL-	34	163	68	12	588.1538474559784
+LL-	35	163	68	12	588.1538474559784
+	Command being timed: "mach2 /n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg30/laml.tree /n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg30/laml.labeling -o /n/fs/ragr-research/projects/pmh-rp/laml/m5k_lg30/mach2 -p LL --max_solutions 10"
+	User time (seconds): 1298.08
+	System time (seconds): 119.01
+	Percent of CPU this job got: 232%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 10:09.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1671552
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3091588
+	Voluntary context switches: 1588877
+	Involuntary context switches: 33799782
+	Swaps: 0
+	File system inputs: 2616
+	File system outputs: 11152
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
