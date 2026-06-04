@@ -9,7 +9,7 @@ vertex,label
 10,lymphnode
 11,lymphnode
 13,lung
-14,lymphnode;lung;oesophagus
+14,lymphnode	lung	oesophagus
 15,oesophagus
 16,oesophagus
 17,lymphnode

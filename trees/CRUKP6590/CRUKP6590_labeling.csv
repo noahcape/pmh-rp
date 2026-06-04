@@ -2,7 +2,7 @@ vertex,label
 3,primary
 4,primary
 6,primary
-7,lymphnode;lung
+7,lymphnode	lung
 8,ovary
 9,primary
 10,primary
@@ -14,9 +14,9 @@ vertex,label
 16,primary
 17,primary
 19,primary
-20,cardiac;lung
+20,cardiac	lung
 22,lymphnode
-23,lymphnode;cardiac
+23,lymphnode	cardiac
 24,primary
 25,lymphnode
 26,lymphnode
@@ -24,7 +24,7 @@ vertex,label
 31,primary
 32,lung
 33,lung
-34,cardiac;lymphnode;lung;pericardial_fluid
+34,cardiac	lymphnode	lung	pericardial_fluid
 35,primary
 36,primary
 37,lymphnode
@@ -48,7 +48,7 @@ vertex,label
 59,lung
 60,pericardial_fluid
 62,primary
-63,lymphnode;lung
+63,lymphnode	lung
 64,lung
-65,lymphnode;lung
+65,lymphnode	lung
 67,ovary

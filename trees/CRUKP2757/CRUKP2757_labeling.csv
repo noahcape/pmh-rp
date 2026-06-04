@@ -1,18 +1,18 @@
 vertex,label
 4,peritoneum
 5,peritoneum
-6,liver;peritoneum
-7,liver;lung
+6,liver	peritoneum
+7,liver	lung
 8,gastric
 9,gastric
 10,liver
-11,gastric;peritoneum
+11,gastric	peritoneum
 12,su_lymphnode
 13,gastric
 15,lung
 16,gastric
-17,softtissue;gastric;peritoneum
-18,gastric;liver
+17,softtissue	gastric	peritoneum
+18,gastric	liver
 19,liver
 20,liver
 21,primary
@@ -21,23 +21,23 @@ vertex,label
 24,peritoneum
 25,liver
 26,lung
-27,gastric;liver
+27,gastric	liver
 28,lung
 29,kidney
-30,lung;peritoneum
+30,lung	peritoneum
 31,peritoneum
 32,gastric
 33,softtissue
 34,lung
 35,liver
 36,peritoneum
-37,kidney;lung;peritoneum
+37,kidney	lung	peritoneum
 39,lung
 40,liver
 41,gastric
 42,liver
 43,liver
-44,peritoneum;liver;lung
+44,peritoneum	liver	lung
 45,su_lymphnode
 46,gastric
 47,liver
@@ -47,6 +47,6 @@ vertex,label
 51,peritoneum
 52,peritoneum
 54,gastric
-55,liver;lung
+55,liver	lung
 56,kidney
 57,liver

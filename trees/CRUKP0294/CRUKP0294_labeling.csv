@@ -1,5 +1,5 @@
 vertex,label
-2,cardiac;lung
+2,cardiac	lung
 3,lymphnode
 4,lymphnode
 5,lymphnode
@@ -15,14 +15,14 @@ vertex,label
 20,liver
 21,lymphnode
 22,lung
-23,cardiac;lymphnode
+23,cardiac	lymphnode
 25,lymphnode
 27,lymphnode
 28,lung
 29,lymphnode
 30,primary
 31,lung
-34,lymphnode;cardiac
+34,lymphnode	cardiac
 35,lung
 36,liver
 37,liver

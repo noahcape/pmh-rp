@@ -2,7 +2,7 @@ vertex,label
 1,lung
 2,lung
 3,lymphnode
-4,primary;lung
+4,primary	lung
 5,lung
 7,lung
 9,lung
@@ -20,7 +20,7 @@ vertex,label
 24,lung
 26,lung
 27,lung
-28,primary;lung
+28,primary	lung
 29,lung
 30,lung
 31,lung

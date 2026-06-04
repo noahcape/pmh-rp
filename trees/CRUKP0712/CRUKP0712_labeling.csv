@@ -26,11 +26,11 @@ vertex,label
 29,lung
 30,primary
 31,primary
-32,primary;lung
+32,primary	lung
 34,lung
 35,primary
 36,cardiac
-37,primary;lung
+37,primary	lung
 39,primary
 40,primary
 41,primary

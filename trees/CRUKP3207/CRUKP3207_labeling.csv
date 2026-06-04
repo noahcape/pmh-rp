@@ -1,15 +1,15 @@
 vertex,label
 2,smallbowel
-3,largebowel;smallbowel
-4,largebowel;smallbowel
+3,largebowel	smallbowel
+4,largebowel	smallbowel
 6,primary
 7,softtissue
 8,smallbowel
-9,primary;smallbowel
+9,primary	smallbowel
 11,primary
 12,primary
 13,smallbowel
-14,largebowel;smallbowel
+14,largebowel	smallbowel
 15,smallbowel
 16,smallbowel
 17,smallbowel

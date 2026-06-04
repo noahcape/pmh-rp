@@ -61,7 +61,7 @@ vertex,label
 78,softtissue
 79,brain
 80,softtissue
-81,lymphnode;softtissue
+81,lymphnode	softtissue
 83,brain
 84,brain
 85,kidney

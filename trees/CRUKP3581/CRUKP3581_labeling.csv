@@ -6,7 +6,7 @@ vertex,label
 5,bone
 6,adrenal
 9,brain
-11,peritoneum;bladder;cardiac;liver;lymphnode;lung;softtissue
+11,peritoneum	bladder	cardiac	liver	lymphnode	lung	softtissue
 12,primary
 13,lung
 14,brain
@@ -32,7 +32,7 @@ vertex,label
 35,liver
 36,bone
 37,brain
-38,adrenal;lymphnode
+38,adrenal	lymphnode
 39,primary
 40,peritoneum
 41,lymphnode

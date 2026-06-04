@@ -1,5 +1,5 @@
 vertex,label
-2,cardiac;kidney;lymphnode;peritoneum;softtissue
+2,cardiac	kidney	lymphnode	peritoneum	softtissue
 3,softtissue
 4,softtissue
 5,lymphnode
@@ -22,7 +22,7 @@ vertex,label
 26,primary
 28,peritoneum
 29,peritoneum
-30,lung;softtissue
+30,lung	softtissue
 32,softtissue
 33,peritoneum
 34,primary
@@ -33,7 +33,7 @@ vertex,label
 41,lung
 42,softtissue
 43,peritoneum
-44,lung;softtissue
+44,lung	softtissue
 45,lung
 46,lymphnode
 47,lymphnode

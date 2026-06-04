@@ -1,6 +1,6 @@
 vertex,label
 2,primary
-3,primary;bone;brain
+3,primary	bone	brain
 6,bone
 7,lymphnode
 8,liver
@@ -14,7 +14,7 @@ vertex,label
 17,bone
 18,primary
 19,primary
-20,adrenal;primary;brain
+20,adrenal	primary	brain
 21,adrenal
 22,primary
 23,primary
@@ -22,7 +22,7 @@ vertex,label
 25,brain
 26,primary
 27,adrenal
-28,adrenal;lymphnode
+28,adrenal	lymphnode
 29,liver
 31,liver
 32,primary

@@ -1,6 +1,6 @@
 vertex,label
-1,lymphnode;lung
-2,lymphnode;lung;softtissue
+1,lymphnode	lung
+2,lymphnode	lung	softtissue
 3,lung
 4,lung
 5,lung
@@ -12,12 +12,12 @@ vertex,label
 12,lung
 13,lymphnode
 14,lung
-15,lymphnode;lung
+15,lymphnode	lung
 16,lung
 17,primary
-18,lung;lymphnode
+18,lung	lymphnode
 19,lung
-20,lymphnode;softtissue
+20,lymphnode	softtissue
 21,lung
 22,softtissue
 23,lung
@@ -36,16 +36,16 @@ vertex,label
 39,lung
 40,lymphnode
 41,lung
-43,primary;lymphnode;lung;softtissue
+43,primary	lymphnode	lung	softtissue
 44,lymphnode
-45,lymphnode;lung
+45,lymphnode	lung
 46,lymphnode
-47,lymphnode;lung
+47,lymphnode	lung
 48,lung
-50,lung;softtissue
+50,lung	softtissue
 51,softtissue
 52,softtissue
 53,lung
-54,lymphnode;lung
+54,lymphnode	lung
 55,softtissue
 56,lung

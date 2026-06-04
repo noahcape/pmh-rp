@@ -8,7 +8,7 @@ vertex,label
 10,lung
 11,bone
 12,lung
-13,bone;lung
+13,bone	lung
 15,lung
 16,lung
 17,primary
@@ -22,7 +22,7 @@ vertex,label
 26,lung
 27,lung
 28,primary
-32,su_lymphnode;primary
+32,su_lymphnode	primary
 33,lung
 34,lung
 35,lung
