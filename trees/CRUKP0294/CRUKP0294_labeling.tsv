@@ -1,28 +1,28 @@
-2	cardiac lung
-3	lymphnode
-4	lymphnode
-5	lymphnode
-7	lymphnode
-9	liver
-10	lung
-12	cardiac
-13	lymphnode
-14	lung
-15	liver
-16	lung
-18	liver
-20	liver
-21	lymphnode
-22	lung
-23	cardiac lymphnode
-25	lymphnode
-27	lymphnode
-28	lung
-29	lymphnode
-30	primary
-31	lung
-34	lymphnode cardiac
-35	lung
-36	liver
-37	liver
-38	lymphnode
+2	left_ventricle_1 left_lower_lobe_7
+3	4r_lymph_node_progression_1
+4	4r_lymph_node_progression_1
+5	4r_lymph_node_progression_2
+7	4r_lymph_node_progression_1 4r_lymph_node_relapse_1
+9	liver_right_subcapsular_1
+10	left_lower_lobe_7
+12	left_ventricle_1
+13	4r_lymph_node_progression_1 4r_lymph_node_relapse_1
+14	left_lower_lobe_7
+15	liver_right_subcapsular_2
+16	left_lower_lobe_pleura
+18	liver_right_lobe_9
+20	liver_left_subcapsular_2
+21	4r_lymph_node_progression_2
+22	left_lower_lobe_pleura left_lower_lobe_21
+23	left_ventricle_1 pericardial_lymph_node left_supraclavicular_lymph_node_1 left_supraclavicular_lymph_node_2 left_supraclavicular_lymph_node_3 left_supraclavicular_lymph_node_4 left_supraclavicular_lymph_node_5 right_hilar_lymph_node_4
+25	pericardial_lymph_node
+27	left_hilar_lymph_node_3 pericardial_lymph_node
+28	left_lower_lobe_7
+29	left_supraclavicular_lymph_node_2
+30	right_upper_lobe_primary_1
+31	left_lower_lobe_7 left_lower_lobe_21
+34	4r_lymph_node_progression_1 left_ventricle_1
+35	left_lower_lobe_7
+36	liver_left_subcapsular_1
+37	liver_right_lobe_8
+38	4r_lymph_node_progression_1

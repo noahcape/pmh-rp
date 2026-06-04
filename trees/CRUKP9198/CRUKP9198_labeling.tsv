@@ -1,29 +1,29 @@
-3	lung
-4	lung
-5	lung
-6	lung
-7	lung
-8	lung
-9	primary lung
-10	primary lung
-11	lung
-12	primary
-13	primary
-14	primary
-15	lymphnode
-16	lung
-17	lung
-18	lung
-19	lung
-20	lung
-21	lung
-22	lung
-23	primary
-24	lymphnode
-25	lung
-26	lung
-27	primary
-28	lung
-29	lung
-31	lung
-32	primary
+3	right_lower_lobe_11
+4	left_lower_lobe_4
+5	right_lower_lobe_8 right_lower_lobe_2
+6	right_lower_lobe_8
+7	right_lower_lobe_10
+8	right_lower_lobe_9 right_lower_lobe_11
+9	left_upper_lobe_primary_3 right_lower_lobe_9
+10	left_upper_lobe_primary_3 left_lower_lobe_4 right_lower_lobe_8 right_lower_lobe_9 right_lower_lobe_10 right_lower_lobe_11
+11	right_lower_lobe_2
+12	left_upper_lobe_primary_3
+13	left_upper_lobe_primary_3
+14	left_upper_lobe_primary_3
+15	mediastinal_lymph_node_4
+16	right_lower_lobe_2
+17	right_lower_lobe_7
+18	right_lower_lobe_7 right_lower_lobe_10
+19	left_lower_lobe_4
+20	right_middle_lobe_2
+21	right_middle_lobe_2
+22	right_upper_lobe_4
+23	left_upper_lobe_primary_3
+24	mediastinal_lymph_node_4
+25	right_lower_lobe_7
+26	right_lower_lobe_9
+27	left_upper_lobe_primary_3
+28	right_lower_lobe_10
+29	right_lower_lobe_7 right_lower_lobe_8 right_lower_lobe_11
+31	right_lower_lobe_7
+32	left_upper_lobe_primary_3

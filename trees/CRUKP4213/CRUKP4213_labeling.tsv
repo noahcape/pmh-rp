@@ -1,8 +1,8 @@
-3	primary
-4	lung
-7	lung
-8	primary
-9	primary
-10	primary
-11	lung
-12	lung
+3	left_upper_lobe_primary_7
+4	left_lower_lobe_20
+7	left_lower_lobe_20
+8	left_upper_lobe_primary_7
+9	left_upper_lobe_primary_7
+10	left_upper_lobe_primary_7
+11	left_upper_lobe_25 left_lower_lobe_20 left_pleura_2
+12	left_upper_lobe_25

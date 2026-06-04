@@ -1,13 +1,13 @@
-3	primary
-5	primary
-6	lung subcutaneous
-7	primary
-8	lung
-9	primary
-10	subcutaneous
-11	primary
-12	subcutaneous
-13	lung subcutaneous
-14	lung
-15	primary
-17	primary
+3	right_lower_lobe_primary_3
+5	right_lower_lobe_primary_3
+6	right_lower_lobe_1 subcutaneous_chest_wall
+7	right_lower_lobe_primary_3
+8	right_lower_lobe_1
+9	right_lower_lobe_primary_3
+10	subcutaneous_chest_wall
+11	right_lower_lobe_primary_3
+12	subcutaneous_chest_wall
+13	right_lower_lobe_1 subcutaneous_chest_wall
+14	right_lower_lobe_1
+15	right_lower_lobe_primary_3
+17	right_lower_lobe_primary_3

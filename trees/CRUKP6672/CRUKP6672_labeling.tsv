@@ -1,14 +1,14 @@
-2	lymphnode
-3	lung
-4	primary
-5	lymphnode lung
-6	primary
-7	lymphnode
-8	lymphnode lung
-9	primary
-10	primary
-11	lung
-13	primary
-14	primary
-15	primary
-16	lymphnode
+2	right_hilar_lymph_node_3
+3	left_upper_lobe_12
+4	right_upper_lobe_primary_2
+5	right_tracheobronchial_lymph_node_2 left_upper_lobe_12
+6	right_upper_lobe_primary_2
+7	right_hilar_lymph_node_3
+8	right_tracheobronchial_lymph_node_2 left_upper_lobe_12
+9	right_upper_lobe_primary_2
+10	right_upper_lobe_primary_2
+11	left_upper_lobe_12
+13	right_upper_lobe_primary_2
+14	right_upper_lobe_primary_2
+15	right_upper_lobe_primary_2
+16	right_tracheobronchial_lymph_node_2

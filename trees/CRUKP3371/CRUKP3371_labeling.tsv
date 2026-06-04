@@ -1,50 +1,50 @@
-1	lymphnode lung
-2	lymphnode lung softtissue
-3	lung
-4	lung
-5	lung
-6	softtissue
-7	lung
-8	lung
-9	lung
-10	lung
-12	lung
-13	lymphnode
-14	lung
-15	lymphnode lung
-16	lung
-17	primary
-18	lung lymphnode
-19	lung
-20	lymphnode softtissue
-21	lung
-22	softtissue
-23	lung
-24	primary
-25	lung
-27	lung
-30	lymphnode
-31	lymphnode
-32	softtissue
-33	lymphnode
-34	lymphnode
-35	lymphnode
-36	lymphnode
-37	lung
-38	lung
-39	lung
-40	lymphnode
-41	lung
-43	primary lymphnode lung softtissue
-44	lymphnode
-45	lymphnode lung
-46	lymphnode
-47	lymphnode lung
-48	lung
-50	lung softtissue
-51	softtissue
-52	softtissue
-53	lung
-54	lymphnode lung
-55	softtissue
-56	lung
+1	hilar_lymph_node_3 right_pleura_1
+2	hilar_lymph_node_1 hilar_lymph_node_2 hilar_lymph_node_4 hilar_lymph_node_5 hilar_lymph_node_6 right_pleura_1 subcarinal_lung_mass right_inner_costal_wall
+3	right_lower_lobe_remnant right_pleura_1
+4	subcarinal_lung_mass
+5	right_lower_lobe_remnant
+6	right_chest_wall_1
+7	right_pleura_1
+8	right_pleura_1
+9	left_lower_lobe_1
+10	right_pleura_1
+12	left_lower_lobe_1
+13	hilar_lymph_node_3
+14	right_pleura_1
+15	hilar_lymph_node_1 right_pleura_1 subcarinal_lung_mass
+16	right_pleura_1
+17	right_lower_lobe_primary_2
+18	right_lower_lobe_remnant hilar_lymph_node_3
+19	right_pleura_1
+20	hilar_lymph_node_3 anterior_chest_wall_2
+21	right_pleura_1
+22	right_chest_wall_1
+23	right_lower_lobe_remnant
+24	right_lower_lobe_primary_2
+25	right_pleura_1
+27	right_pleura_1
+30	hilar_lymph_node_5
+31	hilar_lymph_node_6
+32	right_chest_wall_1
+33	hilar_lymph_node_4
+34	hilar_lymph_node_3
+35	hilar_lymph_node_2
+36	hilar_lymph_node_6
+37	right_lower_lobe_remnant
+38	right_pleura_1
+39	left_lower_lobe_1
+40	hilar_lymph_node_3
+41	right_pleura_1
+43	right_lower_lobe_primary_2 hilar_lymph_node_5 right_pleura_1 right_inner_costal_wall
+44	hilar_lymph_node_4
+45	hilar_lymph_node_3 left_lower_lobe_1
+46	hilar_lymph_node_3 hilar_lymph_node_6
+47	hilar_lymph_node_3 right_pleura_1
+48	left_lower_lobe_1
+50	right_pleura_1 right_chest_wall_1
+51	anterior_chest_wall_2
+52	anterior_chest_wall_1
+53	subcarinal_lung_mass
+54	hilar_lymph_node_4 right_pleura_1
+55	anterior_chest_wall_3
+56	right_lower_lobe_remnant

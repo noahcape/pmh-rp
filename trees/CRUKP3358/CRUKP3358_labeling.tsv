@@ -1,46 +1,46 @@
-1	lung
-2	lung
-3	lymphnode
-4	primary lung
-5	lung
-7	lung
-9	lung
-10	lung
-12	lung
-13	primary
-14	lung
-15	lung
-16	lung
-18	primary
-19	lung
-20	lung
-21	lung
-22	lung
-24	lung
-26	lung
-27	lung
-28	primary lung
-29	lung
-30	lung
-31	lung
-32	lung
-33	lymphnode
-37	lung
-39	lymphnode
-40	lung
-41	lymphnode
-42	lung
-43	lung
-48	lung
-49	lung
-50	lung
-51	primary
-52	lung
-54	lymphnode
-55	lymphnode
-56	lung
-57	primary
-60	lung
-61	primary
-63	primary
-64	lymphnode
+1	right_lung_3
+2	right_lung_5
+3	pretracheal_lymph_node
+4	left_upper_lobe_primary_1 left_upper_lobe_8 left_upper_lobe_9 left_upper_lobe_10
+5	left_upper_lobe_11
+7	left_upper_lobe_10
+9	left_upper_lobe_8
+10	right_lung_2 right_lung_3
+12	left_upper_lobe_8
+13	left_upper_lobe_primary_1
+14	right_lung_3
+15	right_lung_2
+16	right_lung_4 right_lung_6 left_upper_lobe_8 left_upper_lobe_10
+18	left_upper_lobe_primary_1
+19	right_lung_2
+20	left_upper_lobe_9
+21	left_upper_lobe_10
+22	right_lung_5
+24	left_upper_lobe_8
+26	right_lung_4
+27	left_upper_lobe_11
+28	left_upper_lobe_primary_1 right_lung_4
+29	left_upper_lobe_11
+30	right_lung_4
+31	left_upper_lobe_11
+32	left_upper_lobe_9
+33	pretracheal_lymph_node
+37	right_lung_1
+39	axillary_lymph_node_3
+40	right_lung_5
+41	axillary_lymph_node_1
+42	right_lung_1 right_lung_3
+43	right_lung_5
+48	right_lung_6
+49	right_lung_2
+50	right_lung_6
+51	left_upper_lobe_primary_1
+52	right_lung_6 left_upper_lobe_8 left_upper_lobe_9 left_upper_lobe_10
+54	pretracheal_lymph_node
+55	axillary_lymph_node_progression axillary_lymph_node_1 axillary_lymph_node_2 axillary_lymph_node_3
+56	right_lung_2
+57	left_upper_lobe_primary_1
+60	right_lung_5
+61	left_upper_lobe_primary_1
+63	left_upper_lobe_primary_1
+64	axillary_lymph_node_2

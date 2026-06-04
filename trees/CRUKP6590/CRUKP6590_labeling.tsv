@@ -1,53 +1,53 @@
-3	primary
-4	primary
-6	primary
-7	lymphnode lung
-8	ovary
-9	primary
-10	primary
-11	cardiac
-12	lymphnode
-13	primary
-14	lymphnode
-15	cardiac
-16	primary
-17	primary
-19	primary
-20	cardiac lung
-22	lymphnode
-23	lymphnode cardiac
-24	primary
-25	lymphnode
-26	lymphnode
-28	lymphnode
-31	primary
-32	lung
-33	lung
-34	cardiac lymphnode lung pericardial_fluid
-35	primary
-36	primary
-37	lymphnode
-38	cardiac
+3	right_middle_lobe_primary_3
+4	right_middle_lobe_primary_3
+6	right_middle_lobe_primary_3
+7	4l_mediastinal_lymph_node 4r_mediastinal_lymph_node diaphragm_lymph_node paraoesophageal_lymph_node aortic_arch_lymph_node right_upper_lobe_5
+8	right_ovary
+9	right_middle_lobe_primary_3
+10	right_middle_lobe_primary_3
+11	pericardium_7
+12	paraoesophageal_lymph_node
+13	right_middle_lobe_primary_3
+14	4l_mediastinal_lymph_node
+15	pericardium_7
+16	right_middle_lobe_primary_3
+17	right_middle_lobe_primary_3
+19	right_middle_lobe_primary_3
+20	left_ventricle_2 pericardium_7 right_upper_lobe_5 right_lower_lobe_16 right_pleura_3
+22	4r_mediastinal_lymph_node
+23	4r_mediastinal_lymph_node pericardium_7
+24	right_middle_lobe_primary_3
+25	aortic_arch_lymph_node
+26	diaphragm_lymph_node aortic_arch_lymph_node
+28	4r_mediastinal_lymph_node
+31	right_middle_lobe_primary_3
+32	right_pleura_3
+33	right_lower_lobe_16
+34	left_ventricle_2 right_atrium diaphragm_lymph_node left_lower_lobe_8 pericardial_fluid
+35	right_middle_lobe_primary_3
+36	right_middle_lobe_primary_3
+37	4l_mediastinal_lymph_node
+38	pericardium_6
 39	pericardial_fluid
-40	lung
-41	lymphnode
-42	ovary
-43	primary
-45	cardiac
-46	lymphnode
-48	lung
-49	ovary
-51	primary
-52	lymphnode
-53	primary
-55	lung
-56	lymphnode
-57	lung
-58	lung
-59	lung
+40	right_upper_lobe_5
+41	paraoesophageal_lymph_node
+42	right_ovary
+43	right_middle_lobe_primary_3
+45	pericardium_6
+46	diaphragm_lymph_node paraoesophageal_lymph_node
+48	right_upper_lobe_5 right_lower_lobe_16
+49	right_ovary
+51	right_middle_lobe_primary_3
+52	4r_mediastinal_lymph_node
+53	right_middle_lobe_primary_3
+55	left_main_bronchus
+56	aortic_arch_lymph_node
+57	left_main_bronchus
+58	left_lower_lobe_8
+59	left_lower_lobe_8
 60	pericardial_fluid
-62	primary
-63	lymphnode lung
-64	lung
-65	lymphnode lung
-67	ovary
+62	right_middle_lobe_primary_3
+63	diaphragm_lymph_node right_upper_lobe_5
+64	left_main_bronchus
+65	diaphragm_lymph_node right_upper_lobe_5 right_lower_lobe_16
+67	right_ovary
