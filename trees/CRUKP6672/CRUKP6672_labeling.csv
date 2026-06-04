@@ -1,0 +1,15 @@
+vertex,label
+2,lymphnode
+3,lung
+4,primary
+5,lymphnode;lung
+6,primary
+7,lymphnode
+8,lymphnode;lung
+9,primary
+10,primary
+11,lung
+13,primary
+14,primary
+15,primary
+16,lymphnode
