@@ -1,0 +1,5 @@
+source,target,count
+right_lower_lobe_primary_4,left_lower_lobe_2,3
+right_lower_lobe_primary_4,surgery_lymph_node_3,1
+right_lower_lobe_primary_4,right_lower_lobe_3,1
+surgery_lymph_node_3,surgery_lymph_node_4,2

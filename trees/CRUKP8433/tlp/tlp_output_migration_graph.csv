@@ -1,0 +1,10 @@
+source,target,count
+left_upper_lobe_primary_5,left_kidney_2,1
+left_upper_lobe_primary_5,left_mediastinal_mass,2
+left_frontal_lobe2,left_frontal_lobe_surgical_bed,1
+left_kidney_2,left_frontal_lobe2,1
+left_frontal_lobe_surgical_bed,left_frontal_lobe3,1
+left_frontal_lobe2,left_frontal_lobe3,1
+left_kidney_2,left_parailiac_lymph_node,1
+left_parailiac_lymph_node,left_paraaortic_lymph_node_2,3
+left_mediastinal_mass,left_paraaortic_lymph_node_2,1

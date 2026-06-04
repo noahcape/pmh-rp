@@ -1,0 +1,90 @@
+Set parameter Username
+Set parameter LicenseID to value 2779251
+Academic license - for non-commercial use only - expires 2027-02-15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 14968 rows, 12736 columns and 27004 nonzeros (Min)
+Model fingerprint: 0xaacaf54f
+Model has 1161 linear objective coefficients
+Variable types: 0 continuous, 12736 integer (12736 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 2e+00]
+
+User MIP start produced solution with objective 174 (0.05s)
+User MIP start produced solution with objective 171 (0.06s)
+Loaded user MIP start with objective 171
+
+Presolve removed 13741 rows and 11874 columns
+Presolve time: 0.10s
+Presolved: 1227 rows, 862 columns, 6986 nonzeros
+Variable types: 0 continuous, 862 integer (862 binary)
+
+Root relaxation: objective 2.358333e+01, 277 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   23.58333    0   98  171.00000   23.58333  86.2%     -    0s
+H    0     0                      49.0000000   23.58333  51.9%     -    0s
+H    0     0                      48.0000000   23.58333  50.9%     -    0s
+H    0     0                      37.0000000   23.58333  36.3%     -    0s
+H    0     0                      30.0000000   23.58333  21.4%     -    0s
+H    0     0                      28.0000000   23.58333  15.8%     -    0s
+     0     0     cutoff    0        28.00000   28.00000  0.00%     -    0s
+
+Cutting planes:
+  Gomory: 5
+  Cover: 2
+  MIR: 2
+  Zero half: 6
+  RLT: 5
+  BQP: 30
+
+Explored 1 nodes (494 simplex iterations) in 0.20 seconds (0.16 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 7: 28 30 37 ... 174
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.800000000000e+01, best bound 2.800000000000e+01, gap 0.0000%
+2026-06-04 12:22:58.030 | INFO     | __main__:write_results:193 - Writing out results from model solution.
+
+- Name: Gurobi 13.00
+  Status: ok
+  Wallclock time: 0.20318889617919922
+  Termination condition: optimal
+  Termination message: Model was solved to optimality (subject to tolerances), and an optimal solution is available.
+
+<------ Migrations in labeling: 15 ------>
+<------ Number of edges in migration graph: 13 ------>
+	Command being timed: "python /n/fs/ragr-research/projects/pmh-rp/scripts/dag_resolution_labeling.py /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP1584/CRUKP1584_edgelist.tsv /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP1584/CRUKP1584_labeling.tsv -o /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP1584/tlp/tlp_output -r right_upper_lobe_primary_6"
+	User time (seconds): 8.21
+	System time (seconds): 0.21
+	Percent of CPU this job got: 289%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.91
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 186240
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 61083
+	Voluntary context switches: 1913
+	Involuntary context switches: 39
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 64
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+mkdir -p failed for path /n/fs/guest/nc4935/.cache/matplotlib: [Errno 28] No space left on device: '/n/fs/guest/nc4935/.cache/matplotlib'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-yhmkpq5x because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.

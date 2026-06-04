@@ -1,0 +1,8 @@
+source,target,count
+left_multi_lobe_primary,subcarinal_lymph_node,2
+subcarinal_lymph_node,lymph_node_relapse,1
+lymph_node_relapse,right_hilar_lymph_node_1,2
+subcarinal_lymph_node,left_hilar_lymph_node_1,1
+left_hilar_lymph_node_1,right_hilar_lymph_node_1,1
+left_hilar_lymph_node_1,left_hilar_lymph_node_2,1
+right_hilar_lymph_node_1,right_hilar_lymph_node_2,2

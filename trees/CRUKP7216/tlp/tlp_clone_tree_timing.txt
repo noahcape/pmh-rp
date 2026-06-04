@@ -1,0 +1,69 @@
+Set parameter Username
+Set parameter LicenseID to value 2779251
+Academic license - for non-commercial use only - expires 2027-02-15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 151 rows, 126 columns and 415 nonzeros (Min)
+Model fingerprint: 0x7c98d639
+Model has 40 linear objective coefficients
+Variable types: 0 continuous, 126 integer (126 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+User MIP start produced solution with objective 8 (0.00s)
+Loaded user MIP start with objective 8
+
+Presolve removed 130 rows and 105 columns
+Presolve time: 0.00s
+Presolved: 21 rows, 21 columns, 74 nonzeros
+Variable types: 0 continuous, 21 integer (21 binary)
+Found heuristic solution: objective 4.0000000
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 2: 4 8 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.000000000000e+00, best bound 4.000000000000e+00, gap 0.0000%
+2026-06-04 12:22:48.843 | INFO     | __main__:write_results:193 - Writing out results from model solution.
+
+- Name: Gurobi 13.00
+  Status: ok
+  Wallclock time: 0.0029060840606689453
+  Termination condition: optimal
+  Termination message: Model was solved to optimality (subject to tolerances), and an optimal solution is available.
+
+<------ Migrations in labeling: 2 ------>
+<------ Number of edges in migration graph: 2 ------>
+	Command being timed: "python /n/fs/ragr-research/projects/pmh-rp/scripts/dag_resolution_labeling.py /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP7216/CRUKP7216_edgelist.tsv /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP7216/CRUKP7216_labeling.tsv -o /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP7216/tlp/tlp_output -r right_lower_lobe_primary_8"
+	User time (seconds): 6.39
+	System time (seconds): 0.15
+	Percent of CPU this job got: 577%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.13
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 126240
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 22935
+	Voluntary context switches: 1806
+	Involuntary context switches: 59
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 64
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+mkdir -p failed for path /n/fs/guest/nc4935/.cache/matplotlib: [Errno 28] No space left on device: '/n/fs/guest/nc4935/.cache/matplotlib'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-2a0llnxy because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.

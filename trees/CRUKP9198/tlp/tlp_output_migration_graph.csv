@@ -1,0 +1,13 @@
+source,target,count
+left_upper_lobe_primary_3,right_lower_lobe_7,1
+left_upper_lobe_primary_3,right_lower_lobe_10,1
+left_upper_lobe_primary_3,right_lower_lobe_9,2
+left_upper_lobe_primary_3,left_lower_lobe_4,1
+left_upper_lobe_primary_3,mediastinal_lymph_node_4,1
+right_lower_lobe_9,right_lower_lobe_11,2
+right_lower_lobe_11,right_lower_lobe_8,3
+right_lower_lobe_8,right_lower_lobe_7,1
+right_lower_lobe_8,right_lower_lobe_2,2
+right_lower_lobe_8,right_upper_lobe_4,1
+right_lower_lobe_7,right_lower_lobe_10,1
+right_lower_lobe_9,right_middle_lobe_2,1

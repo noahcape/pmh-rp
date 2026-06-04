@@ -1,0 +1,14 @@
+vertex,label
+1,right_lower_lobe_primary_8
+3,right_lower_lobe_primary_8
+5,right_lower_lobe_primary_8
+4,right_lower_lobe_primary_8
+8,right_breast
+10,right_lower_lobe_primary_8
+13,right_lower_lobe_primary_8
+15,right_breast
+7,right_adrenal_2
+12,right_breast
+9,right_lower_lobe_primary_8
+11,right_breast
+dummy_root,right_lower_lobe_primary_8

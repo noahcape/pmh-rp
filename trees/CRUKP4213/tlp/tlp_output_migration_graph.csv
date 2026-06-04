@@ -1,0 +1,4 @@
+source,target,count
+left_upper_lobe_primary_7,left_lower_lobe_20,1
+left_lower_lobe_20,left_upper_lobe_25,1
+left_upper_lobe_25,left_pleura_2,1
