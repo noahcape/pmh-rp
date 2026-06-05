@@ -1,0 +1,8 @@
+source,target,count
+right_middle_lobe_primary_2,ileum_1,1
+right_middle_lobe_primary_2,jejunum_1,1
+right_middle_lobe_primary_2,jejunum_2,1
+right_middle_lobe_primary_2,ileum_2,2
+right_middle_lobe_primary_2,right_chest_wall_2,1
+jejunum_2,tranverse_bowel_1,2
+jejunum_1,tranverse_bowel_2,2

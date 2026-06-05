@@ -7,7 +7,7 @@ CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|
 Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
 
 Optimize a model with 2197 rows, 1941 columns and 3068 nonzeros (Min)
-Model fingerprint: 0x15200ee1
+Model fingerprint: 0x554a7b68
 Model has 164 linear objective coefficients
 Variable types: 0 continuous, 1941 integer (1941 binary)
 Coefficient statistics:
@@ -25,7 +25,7 @@ Presolved: 32 rows, 17 columns, 121 nonzeros
 Found heuristic solution: objective 18.0000000
 Variable types: 0 continuous, 17 integer (17 binary)
 
-Root relaxation: objective 1.700000e+01, 8 iterations, 0.00 seconds (0.00 work units)
+Root relaxation: objective 1.700000e+01, 9 iterations, 0.00 seconds (0.00 work units)
 
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
@@ -33,38 +33,38 @@ Root relaxation: objective 1.700000e+01, 8 iterations, 0.00 seconds (0.00 work u
      0     0   17.00000    0    8   18.00000   17.00000  5.56%     -    0s
 *    0     0               0      17.0000000   17.00000  0.00%     -    0s
 
-Explored 1 nodes (11 simplex iterations) in 0.01 seconds (0.01 work units)
+Explored 1 nodes (12 simplex iterations) in 0.01 seconds (0.01 work units)
 Thread count was 28 (of 56 available processors)
 
 Solution count 3: 17 18 66 
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 1.700000000000e+01, best bound 1.700000000000e+01, gap 0.0000%
-2026-06-04 12:21:10.136 | INFO     | __main__:write_results:193 - Writing out results from model solution.
+2026-06-05 14:36:13.354 | INFO     | __main__:write_results:193 - Writing out results from model solution.
 
 - Name: Gurobi 13.00
   Status: ok
-  Wallclock time: 0.01032710075378418
+  Wallclock time: 0.010256052017211914
   Termination condition: optimal
   Termination message: Model was solved to optimality (subject to tolerances), and an optimal solution is available.
 
 <------ Migrations in labeling: 10 ------>
 <------ Number of edges in migration graph: 7 ------>
 	Command being timed: "python /n/fs/ragr-research/projects/pmh-rp/scripts/dag_resolution_labeling.py /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP3207/CRUKP3207_edgelist.tsv /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP3207/CRUKP3207_labeling.tsv -o /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP3207/tlp/tlp_output -r right_middle_lobe_primary_2"
-	User time (seconds): 6.58
-	System time (seconds): 0.18
-	Percent of CPU this job got: 519%
+	User time (seconds): 6.56
+	System time (seconds): 0.19
+	Percent of CPU this job got: 516%
 	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.30
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 136204
+	Maximum resident set size (kbytes): 136604
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 44721
-	Voluntary context switches: 1861
-	Involuntary context switches: 72
+	Minor (reclaiming a frame) page faults: 43450
+	Voluntary context switches: 1872
+	Involuntary context switches: 42
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 64
@@ -74,4 +74,4 @@ Best objective 1.700000000000e+01, best bound 1.700000000000e+01, gap 0.0000%
 	Page size (bytes): 4096
 	Exit status: 0
 mkdir -p failed for path /n/fs/guest/nc4935/.cache/matplotlib: [Errno 28] No space left on device: '/n/fs/guest/nc4935/.cache/matplotlib'
-Matplotlib created a temporary cache directory at /tmp/matplotlib-4eljc21d because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Matplotlib created a temporary cache directory at /tmp/matplotlib-vsos02tg because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.

@@ -2,10 +2,10 @@ digraph T {
 	"1" [fillcolor="#c2824a", style=filled];
 	"16" [fillcolor="#c2824a", style=filled];
 	"3" [fillcolor="#c2824a", style=filled];
-	"2" [fillcolor="#498349", style=filled];
+	"2" [fillcolor="#44708e", style=filled];
 	"7" [fillcolor="#c2824a", style=filled];
-	"6_0" [fillcolor="#498349", style=filled];
-	"13_0" [fillcolor="#498349", style=filled];
+	"6_0" [fillcolor="#44708e", style=filled];
+	"13_0" [fillcolor="#44708e", style=filled];
 	"11" [fillcolor="#c2824a", style=filled];
 	"9" [fillcolor="#c2824a", style=filled];
 	"5" [fillcolor="#c2824a", style=filled];
@@ -13,9 +13,9 @@ digraph T {
 	"12" [fillcolor="#498349", style=filled];
 	"15" [fillcolor="#c2824a", style=filled];
 	"17" [fillcolor="#c2824a", style=filled];
-	"6_1" [fillcolor="#44708e", style=filled];
+	"6_1" [fillcolor="#498349", style=filled];
 	"14" [fillcolor="#44708e", style=filled];
-	"13_1" [fillcolor="#44708e", style=filled];
+	"13_1" [fillcolor="#498349", style=filled];
 	"8" [fillcolor="#44708e", style=filled];
 	"dummy_root" [fillcolor="#c2824a", style=filled];
 	"1" -> "16";
@@ -28,12 +28,12 @@ digraph T {
 	"2" -> "13_0";
 	"7" -> "5";
 	"6_0" -> "6_1";
-	"6_0" -> "10";
+	"6_0" -> "14";
 	"13_0" -> "13_1";
+	"13_0" -> "8";
 	"11" -> "15";
 	"9" -> "17";
 	"10" -> "12";
-	"6_1" -> "14";
-	"13_1" -> "8";
+	"6_1" -> "10";
 	"dummy_root" -> "1";
 }

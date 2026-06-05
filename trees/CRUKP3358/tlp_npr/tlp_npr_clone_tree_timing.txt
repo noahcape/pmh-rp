@@ -1,0 +1,96 @@
+Set parameter Username
+Set parameter LicenseID to value 2779251
+Academic license - for non-commercial use only - expires 2027-02-15
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Red Hat Enterprise Linux 9.4 (Plow)")
+
+CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|AVX2]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 32752 rows, 29024 columns and 54490 nonzeros (Min)
+Model fingerprint: 0x04171224
+Model has 2065 linear objective coefficients
+Variable types: 0 continuous, 29024 integer (29024 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 2e+00]
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint x61601 by 1.000000000
+
+Presolve removed 28832 rows and 26813 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.03 seconds (0.03 work units)
+Thread count was 1 (of 56 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+WARNING: Loading a SolverResults object with a warning status into
+model.name="unknown";
+    - termination condition: infeasible
+    - message from solver: <undefined>
+ERROR: evaluating object as numeric value:
+decisions['58','31',pretracheal_lymph_node,left_upper_lobe_11]
+        (object: <class 'pyomo.core.base.var.VarData'>)
+    No value for uninitialized VarData object
+    decisions['58','31',pretracheal_lymph_node,left_upper_lobe_11]
+Failed to solve model: No value for uninitialized VarData object decisions['58','31',pretracheal_lymph_node,left_upper_lobe_11]
+Command exited with non-zero status 1
+	Command being timed: "python /n/fs/ragr-research/projects/pmh-rp/scripts/dag_resolution_labeling.py /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP3358/CRUKP3358_edgelist.tsv /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP3358/CRUKP3358_labeling.tsv -o /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP3358/tlp_npr/tlp_npr_output -r left_upper_lobe_primary_1 -p"
+	User time (seconds): 9.68
+	System time (seconds): 0.23
+	Percent of CPU this job got: 222%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.46
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 219160
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 74792
+	Voluntary context switches: 1810
+	Involuntary context switches: 39
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 24
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1
+mkdir -p failed for path /n/fs/guest/nc4935/.cache/matplotlib: [Errno 28] No space left on device: '/n/fs/guest/nc4935/.cache/matplotlib'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-6zc5hwmb because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Traceback (most recent call last):
+  File "/n/fs/ragr-research/projects/pmh-rp/scripts/plots/draw_colored_tree.py", line 50, in parse_tree
+    return nx.read_edgelist(tree_file, create_using=nx.DiGraph(), data=(("weight", float),))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/fs/ragr-research/users/ncape/miniforge3/envs/tlp/lib/python3.11/site-packages/networkx/utils/decorators.py", line 784, in func
+    return argmap._lazy_compile(__wrapper)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<class 'networkx.utils.decorators.argmap'> compilation 10", line 3, in argmap_read_edgelist_5
+  File "/n/fs/ragr-research/users/ncape/miniforge3/envs/tlp/lib/python3.11/site-packages/networkx/utils/decorators.py", line 194, in _open_file
+    fobj = _dispatch_dict[ext](path, mode=mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/n/fs/ragr-research/projects/pmh-rp/trees/CRUKP3358/tlp_npr/tlp_npr_output_apr.edgelist'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/n/fs/ragr-research/projects/pmh-rp/scripts/plots/draw_colored_tree.py", line 342, in <module>
+    main()
+  File "/n/fs/ragr-research/projects/pmh-rp/scripts/plots/draw_colored_tree.py", line 291, in main
+    T = parse_tree(args.tree, args.format)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/fs/ragr-research/projects/pmh-rp/scripts/plots/draw_colored_tree.py", line 52, in parse_tree
+    return nx.read_edgelist(tree_file, create_using=nx.DiGraph())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<class 'networkx.utils.decorators.argmap'> compilation 10", line 3, in argmap_read_edgelist_5
+  File "/n/fs/ragr-research/users/ncape/miniforge3/envs/tlp/lib/python3.11/site-packages/networkx/utils/decorators.py", line 194, in _open_file
+    fobj = _dispatch_dict[ext](path, mode=mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/n/fs/ragr-research/projects/pmh-rp/trees/CRUKP3358/tlp_npr/tlp_npr_output_apr.edgelist'

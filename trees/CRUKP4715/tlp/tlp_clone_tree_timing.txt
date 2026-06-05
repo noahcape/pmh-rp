@@ -7,7 +7,7 @@ CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|
 Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
 
 Optimize a model with 16838 rows, 14197 columns and 25092 nonzeros (Min)
-Model fingerprint: 0x62aceec8
+Model fingerprint: 0xcd2d89dd
 Model has 720 linear objective coefficients
 Variable types: 0 continuous, 14197 integer (14197 binary)
 Coefficient statistics:
@@ -23,55 +23,56 @@ Loaded user MIP start with objective 145
 Presolve removed 16115 rows and 13889 columns
 Presolve time: 0.07s
 Presolved: 723 rows, 308 columns, 3666 nonzeros
+Found heuristic solution: objective 46.0000000
 Variable types: 0 continuous, 308 integer (308 binary)
+Found heuristic solution: objective 25.0000000
 
-Root relaxation: objective 2.175000e+01, 181 iterations, 0.00 seconds (0.00 work units)
+Root relaxation: objective 2.175000e+01, 187 iterations, 0.00 seconds (0.00 work units)
 
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 
-     0     0   21.75000    0   51  145.00000   21.75000  85.0%     -    0s
+     0     0   21.75000    0   65   25.00000   21.75000  13.0%     -    0s
 H    0     0                      24.0000000   21.75000  9.38%     -    0s
 
 Cutting planes:
   Gomory: 1
   Cover: 2
-  Implied bound: 2
+  Implied bound: 1
   Clique: 1
-  Zero half: 13
 
-Explored 1 nodes (283 simplex iterations) in 0.14 seconds (0.10 work units)
+Explored 1 nodes (299 simplex iterations) in 0.14 seconds (0.11 work units)
 Thread count was 28 (of 56 available processors)
 
-Solution count 3: 24 145 153 
+Solution count 5: 24 25 46 ... 153
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 2.400000000000e+01, best bound 2.400000000000e+01, gap 0.0000%
-2026-06-04 12:22:24.263 | INFO     | __main__:write_results:193 - Writing out results from model solution.
+2026-06-05 14:37:27.871 | INFO     | __main__:write_results:193 - Writing out results from model solution.
 
 - Name: Gurobi 13.00
   Status: ok
-  Wallclock time: 0.13608407974243164
+  Wallclock time: 0.1360781192779541
   Termination condition: optimal
   Termination message: Model was solved to optimality (subject to tolerances), and an optimal solution is available.
 
 <------ Migrations in labeling: 13 ------>
 <------ Number of edges in migration graph: 11 ------>
 	Command being timed: "python /n/fs/ragr-research/projects/pmh-rp/scripts/dag_resolution_labeling.py /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP4715/CRUKP4715_edgelist.tsv /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP4715/CRUKP4715_labeling.tsv -o /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP4715/tlp/tlp_output -r right_lower_lobe_primary_6"
-	User time (seconds): 8.29
+	User time (seconds): 8.22
 	System time (seconds): 0.21
-	Percent of CPU this job got: 274%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.10
+	Percent of CPU this job got: 270%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.11
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 190336
+	Maximum resident set size (kbytes): 187688
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 61277
-	Voluntary context switches: 2481
-	Involuntary context switches: 54
+	Minor (reclaiming a frame) page faults: 62622
+	Voluntary context switches: 2466
+	Involuntary context switches: 194
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 64
@@ -81,4 +82,4 @@ Best objective 2.400000000000e+01, best bound 2.400000000000e+01, gap 0.0000%
 	Page size (bytes): 4096
 	Exit status: 0
 mkdir -p failed for path /n/fs/guest/nc4935/.cache/matplotlib: [Errno 28] No space left on device: '/n/fs/guest/nc4935/.cache/matplotlib'
-Matplotlib created a temporary cache directory at /tmp/matplotlib-udg2hvcb because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Matplotlib created a temporary cache directory at /tmp/matplotlib-n5adyial because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.

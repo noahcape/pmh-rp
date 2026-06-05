@@ -1,3 +1,3 @@
 source,target,count
-right_lower_lobe_primary_3,subcutaneous_chest_wall,1
-subcutaneous_chest_wall,right_lower_lobe_1,2
+right_lower_lobe_primary_3,right_lower_lobe_1,1
+right_lower_lobe_1,subcutaneous_chest_wall,2

@@ -1,0 +1,5 @@
+source,target,count
+subcarinal_lymph_node_relapse_1,right_parietal_lobe_2,1
+left_lower_lobe_primary_1,subcarinal_lymph_node_relapse_1,1
+right_parietal_lobe_2,right_parietal_lobe_1,1
+right_parietal_lobe_2,left_parietal_lobe_1,1

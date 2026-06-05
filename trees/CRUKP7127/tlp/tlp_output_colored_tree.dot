@@ -17,9 +17,9 @@ digraph T {
 	"4" [fillcolor="#44708e", style=filled];
 	"12" [fillcolor="#44708e", style=filled];
 	"14" [fillcolor="#498349", style=filled];
-	"15_0" [fillcolor="#c2824a", style=filled];
+	"15_0" [fillcolor="#aa5253", style=filled];
 	"3" [fillcolor="#44708e", style=filled];
-	"15_1" [fillcolor="#aa5253", style=filled];
+	"15_1" [fillcolor="#c2824a", style=filled];
 	"dummy_root" [fillcolor="#44708e", style=filled];
 	"9" -> "19";
 	"19" -> "5";

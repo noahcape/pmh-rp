@@ -1,0 +1,11 @@
+source,target,count
+right_lower_lobe_primary_1,surgery_lymph_node_1,2
+paravertebral_mass,paraaortic_mass_2,3
+right_pleura_relapse,paraaortic_mass_1,1
+right_pleura_relapse,paravertebral_mass,1
+right_lower_lobe_primary_1,paraaortic_mass_1,1
+paraaortic_mass_1,right_pleura_relapse,1
+lung_mass_side_unknown,paraaortic_mass_3,1
+paraaortic_mass_3,paraaortic_mass_2,1
+paravertebral_mass,lung_mass_side_unknown,1
+lung_mass_side_unknown,right_pleura_relapse,1

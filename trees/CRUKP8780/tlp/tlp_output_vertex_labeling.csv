@@ -2,10 +2,10 @@ vertex,label
 1,right_lower_lobe_primary_3
 16,right_lower_lobe_primary_3
 3,right_lower_lobe_primary_3
-2,subcutaneous_chest_wall
+2,right_lower_lobe_1
 7,right_lower_lobe_primary_3
-6_0,subcutaneous_chest_wall
-13_0,subcutaneous_chest_wall
+6_0,right_lower_lobe_1
+13_0,right_lower_lobe_1
 11,right_lower_lobe_primary_3
 9,right_lower_lobe_primary_3
 5,right_lower_lobe_primary_3
@@ -13,8 +13,8 @@ vertex,label
 12,subcutaneous_chest_wall
 15,right_lower_lobe_primary_3
 17,right_lower_lobe_primary_3
-6_1,right_lower_lobe_1
+6_1,subcutaneous_chest_wall
 14,right_lower_lobe_1
-13_1,right_lower_lobe_1
+13_1,subcutaneous_chest_wall
 8,right_lower_lobe_1
 dummy_root,right_lower_lobe_primary_3

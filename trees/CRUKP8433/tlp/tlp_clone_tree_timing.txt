@@ -7,7 +7,7 @@ CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|
 Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
 
 Optimize a model with 6265 rows, 5646 columns and 10777 nonzeros (Min)
-Model fingerprint: 0x160e7a9b
+Model fingerprint: 0xd66912db
 Model has 713 linear objective coefficients
 Variable types: 0 continuous, 5646 integer (5646 binary)
 Coefficient statistics:
@@ -19,53 +19,53 @@ Coefficient statistics:
 User MIP start produced solution with objective 68 (0.01s)
 Loaded user MIP start with objective 68
 
-Presolve removed 5759 rows and 5137 columns
+Presolve removed 5765 rows and 5137 columns
 Presolve time: 0.02s
-Presolved: 506 rows, 509 columns, 2244 nonzeros
+Presolved: 500 rows, 509 columns, 2238 nonzeros
 Variable types: 0 continuous, 509 integer (509 binary)
 Found heuristic solution: objective 23.0000000
 
-Root relaxation: objective 2.050000e+01, 62 iterations, 0.00 seconds (0.00 work units)
+Root relaxation: objective 2.033333e+01, 63 iterations, 0.00 seconds (0.00 work units)
 
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 
-     0     0   20.50000    0    7   23.00000   20.50000  10.9%     -    0s
-H    0     0                      21.0000000   20.50000  2.38%     -    0s
-     0     0   20.50000    0    7   21.00000   20.50000  2.38%     -    0s
+     0     0   20.33333    0   10   23.00000   20.33333  11.6%     -    0s
+H    0     0                      21.0000000   20.33333  3.17%     -    0s
+     0     0   20.33333    0   10   21.00000   20.33333  3.17%     -    0s
 
-Explored 1 nodes (62 simplex iterations) in 0.03 seconds (0.02 work units)
+Explored 1 nodes (71 simplex iterations) in 0.03 seconds (0.02 work units)
 Thread count was 28 (of 56 available processors)
 
 Solution count 3: 21 23 68 
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 2.100000000000e+01, best bound 2.100000000000e+01, gap 0.0000%
-2026-06-04 12:21:28.891 | INFO     | __main__:write_results:193 - Writing out results from model solution.
+2026-06-05 14:36:31.906 | INFO     | __main__:write_results:193 - Writing out results from model solution.
 
 - Name: Gurobi 13.00
   Status: ok
-  Wallclock time: 0.033360958099365234
+  Wallclock time: 0.033180952072143555
   Termination condition: optimal
   Termination message: Model was solved to optimality (subject to tolerances), and an optimal solution is available.
 
 <------ Migrations in labeling: 12 ------>
 <------ Number of edges in migration graph: 9 ------>
 	Command being timed: "python /n/fs/ragr-research/projects/pmh-rp/scripts/dag_resolution_labeling.py /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP8433/CRUKP8433_edgelist.tsv /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP8433/CRUKP8433_labeling.tsv -o /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP8433/tlp/tlp_output -r left_upper_lobe_primary_5"
-	User time (seconds): 7.03
-	System time (seconds): 0.25
-	Percent of CPU this job got: 397%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.83
+	User time (seconds): 7.00
+	System time (seconds): 0.20
+	Percent of CPU this job got: 412%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.74
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 151980
+	Maximum resident set size (kbytes): 153124
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 62264
-	Voluntary context switches: 1955
-	Involuntary context switches: 45
+	Minor (reclaiming a frame) page faults: 51053
+	Voluntary context switches: 1925
+	Involuntary context switches: 51
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 64
@@ -75,4 +75,4 @@ Best objective 2.100000000000e+01, best bound 2.100000000000e+01, gap 0.0000%
 	Page size (bytes): 4096
 	Exit status: 0
 mkdir -p failed for path /n/fs/guest/nc4935/.cache/matplotlib: [Errno 28] No space left on device: '/n/fs/guest/nc4935/.cache/matplotlib'
-Matplotlib created a temporary cache directory at /tmp/matplotlib-6rzcsfg7 because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Matplotlib created a temporary cache directory at /tmp/matplotlib-kygad9rm because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.

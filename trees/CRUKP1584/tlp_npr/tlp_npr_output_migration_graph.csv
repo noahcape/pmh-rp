@@ -1,0 +1,14 @@
+source,target,count
+right_upper_lobe_primary_6,liver_left_lobe_1,1
+liver_right_lobe_2,left_upper_lobe_5,1
+liver_left_lobe_1,right_lower_lobe_4,1
+liver_left_lobe_1,left_adrenal_2,1
+liver_left_lobe_1,liver_right_relapse_2,1
+liver_left_lobe_1,liver_right_lobe_2,2
+liver_left_lobe_1,right_upper_lobe_2,2
+right_lower_lobe_4,left_upper_lobe_5,1
+right_lower_lobe_4,right_middle_lobe_1,1
+right_lower_lobe_4,left_upper_lobe_6,1
+right_lower_lobe_4,right_lower_lobe_14,1
+right_lower_lobe_14,left_upper_lobe_4,1
+right_lower_lobe_14,left_upper_lobe_13,1

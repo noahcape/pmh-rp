@@ -1,0 +1,6 @@
+source,target,count
+right_upper_lobe_primary_2,right_hilar_lymph_node_3,1
+right_upper_lobe_primary_2,left_upper_lobe_12,1
+right_hilar_lymph_node_3,left_upper_lobe_12,1
+left_upper_lobe_12,right_tracheobronchial_lymph_node_2,2
+right_tracheobronchial_lymph_node_2,right_hilar_lymph_node_3,1

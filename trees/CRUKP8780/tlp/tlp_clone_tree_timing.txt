@@ -7,7 +7,7 @@ CPU model: Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz, instruction set [SSE2|AVX|
 Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
 
 Optimize a model with 281 rows, 216 columns and 640 nonzeros (Min)
-Model fingerprint: 0x6aba23fa
+Model fingerprint: 0x89060b6a
 Model has 46 linear objective coefficients
 Variable types: 0 continuous, 216 integer (216 binary)
 Coefficient statistics:
@@ -39,11 +39,11 @@ Solution count 2: 5 9
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 5.000000000000e+00, best bound 5.000000000000e+00, gap 0.0000%
-2026-06-04 12:26:10.516 | INFO     | __main__:write_results:193 - Writing out results from model solution.
+2026-06-05 14:41:14.690 | INFO     | __main__:write_results:193 - Writing out results from model solution.
 
 - Name: Gurobi 13.00
   Status: ok
-  Wallclock time: 0.004559040069580078
+  Wallclock time: 0.004547834396362305
   Termination condition: optimal
   Termination message: Model was solved to optimality (subject to tolerances), and an optimal solution is available.
 
@@ -51,19 +51,19 @@ Best objective 5.000000000000e+00, best bound 5.000000000000e+00, gap 0.0000%
 <------ Number of edges in migration graph: 2 ------>
 	Command being timed: "python /n/fs/ragr-research/projects/pmh-rp/scripts/dag_resolution_labeling.py /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP8780/CRUKP8780_edgelist.tsv /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP8780/CRUKP8780_labeling.tsv -o /n/fs/ragr-research/projects/pmh-rp/trees/CRUKP8780/tlp/tlp_output -r right_lower_lobe_primary_3"
 	User time (seconds): 6.39
-	System time (seconds): 0.16
-	Percent of CPU this job got: 577%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.13
+	System time (seconds): 0.15
+	Percent of CPU this job got: 591%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.10
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 128164
+	Maximum resident set size (kbytes): 126252
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 23040
-	Voluntary context switches: 1808
-	Involuntary context switches: 34
+	Minor (reclaiming a frame) page faults: 23236
+	Voluntary context switches: 1815
+	Involuntary context switches: 40
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 64
@@ -73,4 +73,4 @@ Best objective 5.000000000000e+00, best bound 5.000000000000e+00, gap 0.0000%
 	Page size (bytes): 4096
 	Exit status: 0
 mkdir -p failed for path /n/fs/guest/nc4935/.cache/matplotlib: [Errno 28] No space left on device: '/n/fs/guest/nc4935/.cache/matplotlib'
-Matplotlib created a temporary cache directory at /tmp/matplotlib-z8254mi0 because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Matplotlib created a temporary cache directory at /tmp/matplotlib-ztd4e4d1 because there was an issue with the default path (/n/fs/guest/nc4935/.cache/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.

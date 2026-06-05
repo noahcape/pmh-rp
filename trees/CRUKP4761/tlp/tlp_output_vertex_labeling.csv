@@ -17,7 +17,7 @@ vertex,label
 16,paraaortic_mass_2
 36,right_pleura_relapse
 15,paraaortic_mass_1
-13_0,paravertebral_mass
+13_0,lung_mass_side_unknown
 34,paraaortic_mass_1
 25,paraaortic_mass_1
 19,surgery_lymph_node_1
@@ -45,8 +45,8 @@ vertex,label
 38,right_pleura_relapse
 33_0,lung_mass_side_unknown
 33_1,paraaortic_mass_3
-13_1,paraaortic_mass_2
-13_2,lung_mass_side_unknown
+13_1,paravertebral_mass
 27,lung_mass_side_unknown
+13_2,paraaortic_mass_2
 32_1,surgery_lymph_node_1
 dummy_root,right_lower_lobe_primary_1

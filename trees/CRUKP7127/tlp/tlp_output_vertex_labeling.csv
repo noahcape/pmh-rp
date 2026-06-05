@@ -17,7 +17,7 @@ vertex,label
 4,left_lower_lobe_primary_1
 12,left_lower_lobe_primary_1
 14,right_parietal_lobe_1
-15_0,left_parietal_lobe_1
+15_0,right_parietal_lobe_2
 3,left_lower_lobe_primary_1
-15_1,right_parietal_lobe_2
+15_1,left_parietal_lobe_1
 dummy_root,left_lower_lobe_primary_1
